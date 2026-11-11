@@ -63,6 +63,7 @@ button:active { transform: scale(0.98); }
 }
 .player-list img, .player-list svg { width: 34px; height: 34px; border-radius: 50%; }
 .player-list .host-tag { color: #ffd166; font-size: 12px; border: 1px solid #ffd166; border-radius: 6px; padding: 1px 5px; }
+.player-list .player-level { margin-left: auto; font-size: 14px; padding: 4px 6px; border-radius: 6px; }
 .player-list .off { opacity: 0.45; }
 
 /* 게임 화면 */

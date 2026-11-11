@@ -266,13 +266,34 @@ function renderLobby(m) {
     ul.appendChild(li);
   });
   const amHost = m.host_id === myId;
+  // レベルは1人ずつ違う。ホストは各プレイヤーの横で個別に変えられる
+  ul.querySelectorAll("li").forEach((li, i) => {
+    const p = m.players[i];
+    if (amHost) {
+      const sel = document.createElement("select");
+      sel.className = "player-level";
+      sel.innerHTML = Object.entries(LEVEL_NAMES)
+        .map(([v, name]) => `<option value="${v}">${name}</option>`).join("");
+      sel.value = p.level || "shou5";
+      sel.addEventListener("change", () => {
+        send({ type: "set_player_level", player_id: p.id, level: sel.value });
+      });
+      li.appendChild(sel);
+    } else {
+      const tag = document.createElement("span");
+      tag.className = "host-tag";
+      tag.textContent = LEVEL_NAMES[p.level] || "";
+      li.appendChild(tag);
+    }
+  });
   $("host-controls").classList.toggle("hidden", !amHost);
   $("wait-text").classList.toggle("hidden", amHost);
   // 科目・レベルはホストの選択を全員に同期する
   if (m.subject) $("subject-select").value = m.subject;
   if (m.level) $("level-select").value = m.level;
   const settingsEl = $("lobby-settings");
-  settingsEl.textContent = `科目：${SUBJECT_NAMES[m.subject] || ""}　レベル：${LEVEL_NAMES[m.level] || ""}`;
+  const me = m.players.find(p => p.id === myId);
+  settingsEl.textContent = `科目：${SUBJECT_NAMES[m.subject] || ""}　あなたのレベル：${LEVEL_NAMES[(me && me.level) || m.level] || ""}`;
   settingsEl.classList.toggle("hidden", amHost);
 }
 $("subject-select").addEventListener("change", () => {
@@ -282,7 +303,8 @@ $("level-select").addEventListener("change", () => {
   send({ type: "set_level", level: $("level-select").value });
 });
 $("btn-start").addEventListener("click", () => {
-  send({ type: "start_game", subject: $("subject-select").value, level: $("level-select").value });
+  // レベルはプレイヤーごとにサーバー側で保持しているので、ここでは科目だけ送る
+  send({ type: "start_game", subject: $("subject-select").value });
 });
 
 // ------------------------------------------------------------ 게임 화면

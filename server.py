@@ -334,6 +334,10 @@ class Player:
         self.character = character
         self.ws = None
         self.connected = False
+        # 레벨은 방 공통이 아니라 플레이어마다 따로 가진다 (실력차 대응).
+        # 새 참가자는 방의 기본 레벨로 시작하고, 호스트가 로비에서 개별 조정한다.
+        self.level = DEFAULT_LEVEL
+        self.questions = []  # 이 플레이어 전용 문제 세트 (자기 레벨로 생성)
         self.reset()
 
     def reset(self):
@@ -353,6 +357,7 @@ def public_player(p, total):
         "id": p.token,
         "nickname": p.nickname,
         "character": p.character,
+        "level": p.level,
         "score": p.score,
         "progress": p.progress,
         "total": total,
@@ -409,7 +414,7 @@ def lobby_msg(room):
 
 
 def progress_msg(room):
-    total = len(room["questions"]) or CONFIG["questions_per_game"]
+    total = CONFIG["questions_per_game"]
     return {
         "type": "progress",
         "players": [public_player(p, total) for p in room["players"].values()],
@@ -420,7 +425,7 @@ async def finish_game(room):
     if room["state"] != "playing":
         return
     room["state"] = "finished"
-    total = len(room["questions"])
+    total = CONFIG["questions_per_game"]
     ordered = sorted(
         room["players"].values(),
         key=lambda p: (-p.score, p.finish_seq if p.finish_seq is not None else 10 ** 9),
@@ -532,9 +537,9 @@ async def ws_endpoint(ws: WebSocket):
                     await ws.send_json({
                         "type": "game_state",
                         "subject": room["subject"],
-                        "level": room["level"],
-                        "total": len(room["questions"]),
-                        "questions": sanitize(room["questions"]),
+                        "level": player.level,
+                        "total": len(player.questions),
+                        "questions": sanitize(player.questions),
                         "you": {
                             "progress": player.progress,
                             "score": player.score,
@@ -588,6 +593,7 @@ async def ws_endpoint(ws: WebSocket):
                                 clean_character(msg.get("character")))
                 player.ws = ws
                 player.connected = True
+                player.level = target["level"]  # 방 기본 레벨로 시작, 호스트가 개별 조정 가능
                 room = target
                 room["players"][token] = player
                 await ws.send_json({"type": "joined", "room_code": code,
@@ -634,11 +640,24 @@ async def ws_endpoint(ws: WebSocket):
                     await broadcast(room, lobby_msg(room))
 
             elif mtype == "set_level":
+                # 방 기본 레벨 변경 = 전원 일괄 적용. 이후 개별 조정은 set_player_level.
                 if room["host"] != player.token or room["state"] != "lobby":
                     continue
                 level = msg.get("level")
                 if level in LEVELS:
                     room["level"] = level
+                    for p in room["players"].values():
+                        p.level = level
+                    await broadcast(room, lobby_msg(room))
+
+            elif mtype == "set_player_level":
+                # 호스트가 참가자 한 사람의 레벨만 지정한다 (실력차 대응).
+                if room["host"] != player.token or room["state"] != "lobby":
+                    continue
+                target = room["players"].get(msg.get("player_id") or "")
+                level = msg.get("level")
+                if target is not None and level in LEVELS:
+                    target.level = level
                     await broadcast(room, lobby_msg(room))
 
             elif mtype == "start_game":
@@ -652,39 +671,43 @@ async def ws_endpoint(ws: WebSocket):
                 if subject not in ("math", "en", "ja"):
                     await fail("科目が正しくありません。")
                     continue
-                level = msg.get("level") or room["level"]
-                if level not in LEVELS:
-                    await fail("レベルが正しくありません。")
-                    continue
                 total = CONFIG["questions_per_game"]
-                questions = build_questions(subject, level, total)
-                if len(questions) < total:
-                    await fail("問題が足りません。")
+                # 문제는 플레이어마다 자기 레벨로 따로 생성한다 (전원 같은 문제 아님).
+                per_player = {}
+                for p in room["players"].values():
+                    qs = build_questions(subject, p.level, total)
+                    if len(qs) < total:
+                        await fail("問題が足りません。")
+                        per_player = None
+                        break
+                    per_player[p.token] = qs
+                if per_player is None:
                     continue
                 room["subject"] = subject
-                room["level"] = level
-                room["questions"] = questions
+                room["questions"] = []
                 room["state"] = "playing"
                 room["results"] = None
                 room["finish_counter"] = 0
                 for p in room["players"].values():
                     p.reset()
-                await broadcast(room, {
-                    "type": "game_started",
-                    "subject": subject,
-                    "level": level,
-                    "total": len(questions),
-                    "questions": sanitize(questions),
-                })
+                    p.questions = per_player[p.token]
+                for p in room["players"].values():
+                    await send(p, {
+                        "type": "game_started",
+                        "subject": subject,
+                        "level": p.level,
+                        "total": len(p.questions),
+                        "questions": sanitize(p.questions),
+                    })
                 await broadcast(room, progress_msg(room))
 
             elif mtype == "answer":
                 if room["state"] != "playing" or player.finished:
                     continue
                 idx = player.progress
-                if idx >= len(room["questions"]):
+                if idx >= len(player.questions):
                     continue
-                q = room["questions"][idx]
+                q = player.questions[idx]
                 try:
                     choice = int(msg.get("choice"))
                 except Exception:
@@ -710,7 +733,7 @@ async def ws_endpoint(ws: WebSocket):
                     player.streak = 0
                 player.progress += 1
                 player.q_start = now
-                if player.progress >= len(room["questions"]):
+                if player.progress >= len(player.questions):
                     player.finished = True
                     room["finish_counter"] += 1
                     player.finish_seq = room["finish_counter"]
@@ -724,7 +747,7 @@ async def ws_endpoint(ws: WebSocket):
                     "item_gained": item_gained,
                     "inventory": list(player.inventory),
                     "progress": player.progress,
-                    "total": len(room["questions"]),
+                    "total": len(player.questions),
                     "finished": player.finished,
                 })
                 await broadcast(room, progress_msg(room))
@@ -762,8 +785,9 @@ async def ws_endpoint(ws: WebSocket):
                             "question_index": target.progress,
                         }
                         if item == "hide":
-                            wrong = [i for i in range(len(room["questions"][target.progress]["choices"]))
-                                     if i != room["questions"][target.progress]["answer"]]
+                            tq = target.questions[target.progress]
+                            wrong = [i for i in range(len(tq["choices"]))
+                                     if i != tq["answer"]]
                             effect["choice_index"] = random.choice(wrong)
                         await send(target, effect)
                         await ws.send_json({"type": "item_used", "item": item,
@@ -779,7 +803,7 @@ async def ws_endpoint(ws: WebSocket):
                                         "target_id": player.token, "blocked": False})
                     await broadcast(room, progress_msg(room))
                 elif item == "hint":
-                    q = room["questions"][player.progress]
+                    q = player.questions[player.progress]
                     wrong = [i for i in range(len(q["choices"])) if i != q["answer"]]
                     player.inventory.remove(item)
                     await ws.send_json({"type": "hint", "choice_index": random.choice(wrong),
