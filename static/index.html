@@ -70,6 +70,7 @@
     </div>
     <p id="lobby-settings" class="hidden"></p>
     <p id="wait-text" class="hidden">ホストがスタートするのを待っているよ…</p>
+    <button id="btn-leave-lobby" class="ghost">退出する</button>
   </section>
 
   <!-- ゲーム画面 -->
@@ -89,6 +90,12 @@
       <div class="inv-title">アイテム（攻撃アイテムは押してから相手をタップ）</div>
       <div id="inventory"></div>
     </div>
+    <div class="game-controls">
+      <button id="btn-pause" class="ghost hidden">⏸ 一時停止</button>
+      <button id="btn-end" class="ghost hidden">ゲーム終了</button>
+      <button id="btn-forfeit" class="ghost">リタイア</button>
+      <button id="btn-leave-game" class="ghost">退出</button>
+    </div>
   </section>
 
   <!-- 結果画面 -->
@@ -98,6 +105,7 @@
     <button id="btn-rematch" class="primary big hidden">もう一度（ホスト）</button>
     <p id="rematch-wait" class="hidden">ホストがもう一度始めるのを待っているよ…</p>
     <button id="btn-result-ranking" class="ghost">累計ランキング</button>
+    <button id="btn-leave-result" class="ghost">退出する</button>
   </section>
 
   <div id="ranking-modal" class="modal hidden">
@@ -111,6 +119,13 @@
   <div id="toast" class="hidden"></div>
 </div>
 <button id="btn-sound" title="サウンドON/OFF">🔊</button>
+<div id="pause-overlay" class="hidden">
+  <div class="pause-box">
+    <div class="pause-title">⏸ 一時停止中</div>
+    <button id="btn-resume" class="primary big hidden">再開する</button>
+    <p id="pause-wait" class="hidden">ホストが再開するのを待っているよ…</p>
+  </div>
+</div>
 <div id="countdown" class="hidden"></div>
 <canvas id="confetti"></canvas>
 <script src="/static/app.js"></script>

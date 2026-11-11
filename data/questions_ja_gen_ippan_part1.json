@@ -1,0 +1,3852 @@
+[
+ {
+  "question": "尖鋭",
+  "choices": [
+   "せんえい",
+   "ぜんえい",
+   "せんたん",
+   "さいせんたん"
+  ],
+  "answer": "せんえい",
+  "level": "ippan"
+ },
+ {
+  "question": "切瑳琢磨",
+  "choices": [
+   "しめきりび",
+   "きりきず",
+   "せっさたくま",
+   "せいっさたくま"
+  ],
+  "answer": "せっさたくま",
+  "level": "ippan"
+ },
+ {
+  "question": "蓮花",
+  "choices": [
+   "はなむこ",
+   "はなばたけ",
+   "れんげ",
+   "れいんげ"
+  ],
+  "answer": "れんげ",
+  "level": "ippan"
+ },
+ {
+  "question": "山姥",
+  "choices": [
+   "さんがく",
+   "やまうは",
+   "やまうば",
+   "わさび"
+  ],
+  "answer": "やまうば",
+  "level": "ippan"
+ },
+ {
+  "question": "廻送",
+  "choices": [
+   "かいてん",
+   "せんかい",
+   "かいそう",
+   "かいっそう"
+  ],
+  "answer": "かいそう",
+  "level": "ippan"
+ },
+ {
+  "question": "団栗",
+  "choices": [
+   "しきぶとん",
+   "ふとん",
+   "どんくり",
+   "どんぐり"
+  ],
+  "answer": "どんぐり",
+  "level": "ippan"
+ },
+ {
+  "question": "煉瓦",
+  "choices": [
+   "れんが",
+   "しれん",
+   "れいんが",
+   "ガス"
+  ],
+  "answer": "れんが",
+  "level": "ippan"
+ },
+ {
+  "question": "惣社",
+  "choices": [
+   "そうじゃ",
+   "そうざい",
+   "そうじや",
+   "かいしゃ"
+  ],
+  "answer": "そうじゃ",
+  "level": "ippan"
+ },
+ {
+  "question": "芥箱",
+  "choices": [
+   "とうがらし",
+   "ごうみばこ",
+   "からし",
+   "ごみばこ"
+  ],
+  "answer": "ごみばこ",
+  "level": "ippan"
+ },
+ {
+  "question": "大晦日",
+  "choices": [
+   "おおみそか",
+   "おおさじ",
+   "おおみそうか",
+   "たいしょう"
+  ],
+  "answer": "おおみそか",
+  "level": "ippan"
+ },
+ {
+  "question": "辻説法",
+  "choices": [
+   "ほうれんそう",
+   "つじつま",
+   "つじせっぽう",
+   "つじせっぽ"
+  ],
+  "answer": "つじせっぽう",
+  "level": "ippan"
+ },
+ {
+  "question": "孔雀",
+  "choices": [
+   "カナリア",
+   "ひばり",
+   "くじやく",
+   "くじゃく"
+  ],
+  "answer": "くじゃく",
+  "level": "ippan"
+ },
+ {
+  "question": "蕃殖",
+  "choices": [
+   "はんじょう",
+   "はんしょく",
+   "はんっしょく",
+   "はんしゅ"
+  ],
+  "answer": "はんしょく",
+  "level": "ippan"
+ },
+ {
+  "question": "稀少",
+  "choices": [
+   "きはく",
+   "きしょう",
+   "きっしょう",
+   "こき"
+  ],
+  "answer": "きしょう",
+  "level": "ippan"
+ },
+ {
+  "question": "磯辺",
+  "choices": [
+   "いそべ",
+   "いっそべ",
+   "そこらへん",
+   "へんきょう"
+  ],
+  "answer": "いそべ",
+  "level": "ippan"
+ },
+ {
+  "question": "絃楽器",
+  "choices": [
+   "さんげん",
+   "げんがき",
+   "げんがっき",
+   "きょうき"
+  ],
+  "answer": "げんがっき",
+  "level": "ippan"
+ },
+ {
+  "question": "筆蹟",
+  "choices": [
+   "こんせき",
+   "きせき",
+   "ひせき",
+   "ひっせき"
+  ],
+  "answer": "ひっせき",
+  "level": "ippan"
+ },
+ {
+  "question": "絶讃",
+  "choices": [
+   "さんじ",
+   "ぜっさん",
+   "ぜいっさん",
+   "じさん"
+  ],
+  "answer": "ぜっさん",
+  "level": "ippan"
+ },
+ {
+  "question": "合槌",
+  "choices": [
+   "あいづっち",
+   "かなづち",
+   "きゅうごう",
+   "あいづち"
+  ],
+  "answer": "あいづち",
+  "level": "ippan"
+ },
+ {
+  "question": "之等",
+  "choices": [
+   "われら",
+   "これら",
+   "ごれら",
+   "ここら"
+  ],
+  "answer": "これら",
+  "level": "ippan"
+ },
+ {
+  "question": "菩提",
+  "choices": [
+   "ぼだい",
+   "ていけい",
+   "ぼさつ",
+   "ほだい"
+  ],
+  "answer": "ぼだい",
+  "level": "ippan"
+ },
+ {
+  "question": "繁昌",
+  "choices": [
+   "はんじょう",
+   "ばんじょう",
+   "はんじよう",
+   "はんしょう"
+  ],
+  "answer": "はんじょう",
+  "level": "ippan"
+ },
+ {
+  "question": "仔猫",
+  "choices": [
+   "こねこ",
+   "しさい",
+   "こうねこ",
+   "こうし"
+  ],
+  "answer": "こねこ",
+  "level": "ippan"
+ },
+ {
+  "question": "尖端",
+  "choices": [
+   "ぜんたん",
+   "さいせんたん",
+   "せんえい",
+   "せんたん"
+  ],
+  "answer": "せんたん",
+  "level": "ippan"
+ },
+ {
+  "question": "巫子",
+  "choices": [
+   "えびす",
+   "みこ",
+   "ネジ",
+   "みこう"
+  ],
+  "answer": "みこ",
+  "level": "ippan"
+ },
+ {
+  "question": "昂騰",
+  "choices": [
+   "こうふん",
+   "こうっとう",
+   "こうとう",
+   "こうしん"
+  ],
+  "answer": "こうとう",
+  "level": "ippan"
+ },
+ {
+  "question": "鎮坐",
+  "choices": [
+   "れんざ",
+   "ざせき",
+   "ちんざ",
+   "ちんざう"
+  ],
+  "answer": "ちんざ",
+  "level": "ippan"
+ },
+ {
+  "question": "讃美歌",
+  "choices": [
+   "さんびか",
+   "さんびっか",
+   "おうか",
+   "ばんか"
+  ],
+  "answer": "さんびか",
+  "level": "ippan"
+ },
+ {
+  "question": "啄木",
+  "choices": [
+   "たくぼうく",
+   "たくぼく",
+   "かしわぎ",
+   "ひいらぎ"
+  ],
+  "answer": "たくぼく",
+  "level": "ippan"
+ },
+ {
+  "question": "黄瓜",
+  "choices": [
+   "きゅうり",
+   "ぎゅうり",
+   "グアム",
+   "おうだん"
+  ],
+  "answer": "きゅうり",
+  "level": "ippan"
+ },
+ {
+  "question": "紙鳶",
+  "choices": [
+   "ちりがみ",
+   "たこ",
+   "かみくず",
+   "だこ"
+  ],
+  "answer": "たこ",
+  "level": "ippan"
+ },
+ {
+  "question": "杜撰",
+  "choices": [
+   "ずさん",
+   "すさん",
+   "じせん",
+   "とくせん"
+  ],
+  "answer": "ずさん",
+  "level": "ippan"
+ },
+ {
+  "question": "人喰",
+  "choices": [
+   "ひとくい",
+   "くいもの",
+   "ろうにん",
+   "ひとっくい"
+  ],
+  "answer": "ひとくい",
+  "level": "ippan"
+ },
+ {
+  "question": "汐干狩",
+  "choices": [
+   "しおひがり",
+   "らんかん",
+   "しおどき",
+   "じおひがり"
+  ],
+  "answer": "しおひがり",
+  "level": "ippan"
+ },
+ {
+  "question": "瑞宝章",
+  "choices": [
+   "ずいほうじょう",
+   "たからくじ",
+   "らんじゅほうしょう",
+   "ずいほうしょう"
+  ],
+  "answer": "ずいほうしょう",
+  "level": "ippan"
+ },
+ {
+  "question": "佃煮",
+  "choices": [
+   "つくだに",
+   "づくだに",
+   "つぐだに",
+   "つっくだに"
+  ],
+  "answer": "つくだに",
+  "level": "ippan"
+ },
+ {
+  "question": "編纂",
+  "choices": [
+   "へんっさん",
+   "へんさん",
+   "へいんさん",
+   "へんしゅう"
+  ],
+  "answer": "へんさん",
+  "level": "ippan"
+ },
+ {
+  "question": "俄雨",
+  "choices": [
+   "にわがあめ",
+   "にわかあめ",
+   "にわっかあめ",
+   "にわかあめい"
+  ],
+  "answer": "にわかあめ",
+  "level": "ippan"
+ },
+ {
+  "question": "胎仔",
+  "choices": [
+   "たいじ",
+   "たいし",
+   "こうし",
+   "しさい"
+  ],
+  "answer": "たいじ",
+  "level": "ippan"
+ },
+ {
+  "question": "法蓮草",
+  "choices": [
+   "ほうれんそう",
+   "ほうれんぞう",
+   "つじせっぽう",
+   "ほうれんっそう"
+  ],
+  "answer": "ほうれんそう",
+  "level": "ippan"
+ },
+ {
+  "question": "同棲",
+  "choices": [
+   "きょうせい",
+   "どうぜい",
+   "どうせい",
+   "せいそく"
+  ],
+  "answer": "どうせい",
+  "level": "ippan"
+ },
+ {
+  "question": "輔導",
+  "choices": [
+   "ほじょ",
+   "ほど",
+   "ほどう",
+   "ほさ"
+  ],
+  "answer": "ほどう",
+  "level": "ippan"
+ },
+ {
+  "question": "外註",
+  "choices": [
+   "ちゅうもん",
+   "がいかく",
+   "がいちゅう",
+   "がいちゆう"
+  ],
+  "answer": "がいちゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "阿弥陀",
+  "choices": [
+   "あみだ",
+   "まんだら",
+   "カナダ",
+   "あみた"
+  ],
+  "answer": "あみだ",
+  "level": "ippan"
+ },
+ {
+  "question": "其他",
+  "choices": [
+   "それほど",
+   "それぞれ",
+   "そのほか",
+   "そのうほか"
+  ],
+  "answer": "そのほか",
+  "level": "ippan"
+ },
+ {
+  "question": "烏帽子",
+  "choices": [
+   "えぼっし",
+   "えぼし",
+   "キジ",
+   "はやし"
+  ],
+  "answer": "えぼし",
+  "level": "ippan"
+ },
+ {
+  "question": "寓意",
+  "choices": [
+   "くうい",
+   "いよく",
+   "ぐうわ",
+   "ぐうい"
+  ],
+  "answer": "ぐうい",
+  "level": "ippan"
+ },
+ {
+  "question": "已後",
+  "choices": [
+   "こうご",
+   "いご",
+   "いごう",
+   "いぜん"
+  ],
+  "answer": "いご",
+  "level": "ippan"
+ },
+ {
+  "question": "叢書",
+  "choices": [
+   "じしょ",
+   "そうしょ",
+   "そうっしょ",
+   "どくしょ"
+  ],
+  "answer": "そうしょ",
+  "level": "ippan"
+ },
+ {
+  "question": "大捷",
+  "choices": [
+   "だいしょう",
+   "たいしょう",
+   "ぼうだい",
+   "たいき"
+  ],
+  "answer": "たいしょう",
+  "level": "ippan"
+ },
+ {
+  "question": "秘訣",
+  "choices": [
+   "ひけつ",
+   "ひけっつ",
+   "ひげつ",
+   "けつべつ"
+  ],
+  "answer": "ひけつ",
+  "level": "ippan"
+ },
+ {
+  "question": "按配",
+  "choices": [
+   "あんはい",
+   "こうあん",
+   "あんばい",
+   "あんま"
+  ],
+  "answer": "あんばい",
+  "level": "ippan"
+ },
+ {
+  "question": "屈托",
+  "choices": [
+   "くったく",
+   "ふたく",
+   "くったぐ",
+   "たくはつ"
+  ],
+  "answer": "くったく",
+  "level": "ippan"
+ },
+ {
+  "question": "蕃昌",
+  "choices": [
+   "はんじよう",
+   "はんしゅ",
+   "はんしょく",
+   "はんじょう"
+  ],
+  "answer": "はんじょう",
+  "level": "ippan"
+ },
+ {
+  "question": "唐芥子",
+  "choices": [
+   "とうがらっし",
+   "はやし",
+   "ごみばこ",
+   "とうがらし"
+  ],
+  "answer": "とうがらし",
+  "level": "ippan"
+ },
+ {
+  "question": "馴鹿",
+  "choices": [
+   "おじか",
+   "となっかい",
+   "となかい",
+   "かおなじみ"
+  ],
+  "answer": "となかい",
+  "level": "ippan"
+ },
+ {
+  "question": "歎息",
+  "choices": [
+   "たんそうく",
+   "たんそく",
+   "ひたん",
+   "こそく"
+  ],
+  "answer": "たんそく",
+  "level": "ippan"
+ },
+ {
+  "question": "骨董",
+  "choices": [
+   "かるた",
+   "こつつぼ",
+   "ことう",
+   "こっとう"
+  ],
+  "answer": "こっとう",
+  "level": "ippan"
+ },
+ {
+  "question": "気焰",
+  "choices": [
+   "きえいん",
+   "しんきろう",
+   "きまま",
+   "きえん"
+  ],
+  "answer": "きえん",
+  "level": "ippan"
+ },
+ {
+  "question": "栖息地",
+  "choices": [
+   "せいそく",
+   "せいそくち",
+   "じすべり",
+   "せいぞくち"
+  ],
+  "answer": "せいそくち",
+  "level": "ippan"
+ },
+ {
+  "question": "雇傭",
+  "choices": [
+   "こよ",
+   "ひやとい",
+   "ちょうよう",
+   "こよう"
+  ],
+  "answer": "こよう",
+  "level": "ippan"
+ },
+ {
+  "question": "楕円",
+  "choices": [
+   "だえいん",
+   "まるぎり",
+   "だえん",
+   "だえんけい"
+  ],
+  "answer": "だえん",
+  "level": "ippan"
+ },
+ {
+  "question": "仔犬",
+  "choices": [
+   "しばいぬ",
+   "ごいぬ",
+   "こひつじ",
+   "こいぬ"
+  ],
+  "answer": "こいぬ",
+  "level": "ippan"
+ },
+ {
+  "question": "讃美",
+  "choices": [
+   "さんび",
+   "しょうさん",
+   "じがじさん",
+   "さんひ"
+  ],
+  "answer": "さんび",
+  "level": "ippan"
+ },
+ {
+  "question": "短篇",
+  "choices": [
+   "こうへん",
+   "たんぺん",
+   "ぜんぺん",
+   "だんぺん"
+  ],
+  "answer": "たんぺん",
+  "level": "ippan"
+ },
+ {
+  "question": "装釘",
+  "choices": [
+   "ほそう",
+   "ぞうてい",
+   "そうてい",
+   "そうでい"
+  ],
+  "answer": "そうてい",
+  "level": "ippan"
+ },
+ {
+  "question": "其等",
+  "choices": [
+   "ぞれら",
+   "それほど",
+   "それら",
+   "そこらへん"
+  ],
+  "answer": "それら",
+  "level": "ippan"
+ },
+ {
+  "question": "捕物帖",
+  "choices": [
+   "とりものっちょう",
+   "とうりものちょう",
+   "とりものちょう",
+   "とりものちよう"
+  ],
+  "answer": "とりものちょう",
+  "level": "ippan"
+ },
+ {
+  "question": "刺戟",
+  "choices": [
+   "ふうし",
+   "しげき",
+   "しげっき",
+   "ししゅう"
+  ],
+  "answer": "しげき",
+  "level": "ippan"
+ },
+ {
+  "question": "辻堂",
+  "choices": [
+   "つじつま",
+   "つじど",
+   "つじせっぽう",
+   "つじどう"
+  ],
+  "answer": "つじどう",
+  "level": "ippan"
+ },
+ {
+  "question": "感歎",
+  "choices": [
+   "たんそく",
+   "かんったん",
+   "ひたん",
+   "かんたん"
+  ],
+  "answer": "かんたん",
+  "level": "ippan"
+ },
+ {
+  "question": "吾等",
+  "choices": [
+   "われいら",
+   "それら",
+   "これら",
+   "われら"
+  ],
+  "answer": "われら",
+  "level": "ippan"
+ },
+ {
+  "question": "杏子",
+  "choices": [
+   "なす",
+   "ギョーザ",
+   "あんす",
+   "あんず"
+  ],
+  "answer": "あんず",
+  "level": "ippan"
+ },
+ {
+  "question": "琥珀",
+  "choices": [
+   "こぱく",
+   "こうはく",
+   "こはぐ",
+   "こはく"
+  ],
+  "answer": "こはく",
+  "level": "ippan"
+ },
+ {
+  "question": "修煉",
+  "choices": [
+   "せいれん",
+   "ねりせいひん",
+   "じゅうれん",
+   "しゅうれん"
+  ],
+  "answer": "しゅうれん",
+  "level": "ippan"
+ },
+ {
+  "question": "棲息地",
+  "choices": [
+   "せいそくち",
+   "ぜんそく",
+   "せいそくぢ",
+   "じすべり"
+  ],
+  "answer": "せいそくち",
+  "level": "ippan"
+ },
+ {
+  "question": "公苑",
+  "choices": [
+   "こうえん",
+   "れいえん",
+   "ごうえん",
+   "えんない"
+  ],
+  "answer": "こうえん",
+  "level": "ippan"
+ },
+ {
+  "question": "一雫",
+  "choices": [
+   "ひとしずく",
+   "いっかく",
+   "ひとすじなわ",
+   "ひっとしずく"
+  ],
+  "answer": "ひとしずく",
+  "level": "ippan"
+ },
+ {
+  "question": "菩薩",
+  "choices": [
+   "ぼうさつ",
+   "ぼさつ",
+   "ぼだいじ",
+   "さっちょう"
+  ],
+  "answer": "ぼさつ",
+  "level": "ippan"
+ },
+ {
+  "question": "古稀",
+  "choices": [
+   "もうこ",
+   "ふるきず",
+   "こっき",
+   "こき"
+  ],
+  "answer": "こき",
+  "level": "ippan"
+ },
+ {
+  "question": "煉製品",
+  "choices": [
+   "ねりぜいひん",
+   "せいれん",
+   "ねりせいひん",
+   "せんれん"
+  ],
+  "answer": "ねりせいひん",
+  "level": "ippan"
+ },
+ {
+  "question": "諒解",
+  "choices": [
+   "べんかい",
+   "りょうかい",
+   "りようかい",
+   "りょうしょう"
+  ],
+  "answer": "りょうかい",
+  "level": "ippan"
+ },
+ {
+  "question": "一眸",
+  "choices": [
+   "いちぼう",
+   "いちりょう",
+   "いちほう",
+   "いっこく"
+  ],
+  "answer": "いちぼう",
+  "level": "ippan"
+ },
+ {
+  "question": "銑鉄",
+  "choices": [
+   "せんてつ",
+   "ぜんてつ",
+   "てっぽう",
+   "かなづち"
+  ],
+  "answer": "せんてつ",
+  "level": "ippan"
+ },
+ {
+  "question": "綜合",
+  "choices": [
+   "そうらん",
+   "そうごう",
+   "ぞうごう",
+   "あいづち"
+  ],
+  "answer": "そうごう",
+  "level": "ippan"
+ },
+ {
+  "question": "撒水",
+  "choices": [
+   "さんすい",
+   "さんずい",
+   "てっしゅう",
+   "みずたまり"
+  ],
+  "answer": "さんすい",
+  "level": "ippan"
+ },
+ {
+  "question": "瀕死",
+  "choices": [
+   "うえじに",
+   "ひんっし",
+   "しぼつ",
+   "ひんし"
+  ],
+  "answer": "ひんし",
+  "level": "ippan"
+ },
+ {
+  "question": "先鋒",
+  "choices": [
+   "せんほう",
+   "せんぽう",
+   "ほこさき",
+   "せんべん"
+  ],
+  "answer": "せんぽう",
+  "level": "ippan"
+ },
+ {
+  "question": "白洲",
+  "choices": [
+   "はくあき",
+   "しらす",
+   "おうしゅう",
+   "しらっす"
+  ],
+  "answer": "しらす",
+  "level": "ippan"
+ },
+ {
+  "question": "彗星",
+  "choices": [
+   "すいせ",
+   "すいせい",
+   "すいっせい",
+   "シンガポール"
+  ],
+  "answer": "すいせい",
+  "level": "ippan"
+ },
+ {
+  "question": "溜息",
+  "choices": [
+   "せいそく",
+   "せいそくち",
+   "ためき",
+   "ためいき"
+  ],
+  "answer": "ためいき",
+  "level": "ippan"
+ },
+ {
+  "question": "席捲",
+  "choices": [
+   "ざせき",
+   "せっけん",
+   "せいっけん",
+   "ぜっけん"
+  ],
+  "answer": "せっけん",
+  "level": "ippan"
+ },
+ {
+  "question": "儲蓄",
+  "choices": [
+   "ちょちっく",
+   "ちよちく",
+   "ちょちぐ",
+   "ちょちく"
+  ],
+  "answer": "ちょちく",
+  "level": "ippan"
+ },
+ {
+  "question": "只今",
+  "choices": [
+   "ひたすら",
+   "たたいま",
+   "いままで",
+   "ただいま"
+  ],
+  "answer": "ただいま",
+  "level": "ippan"
+ },
+ {
+  "question": "外壕",
+  "choices": [
+   "がいちゅう",
+   "そとぼり",
+   "そどぼり",
+   "そがい"
+  ],
+  "answer": "そとぼり",
+  "level": "ippan"
+ },
+ {
+  "question": "菩提寺",
+  "choices": [
+   "ぼだいじゅ",
+   "ぼだいじ",
+   "ぼだい",
+   "ほだいじ"
+  ],
+  "answer": "ぼだいじ",
+  "level": "ippan"
+ },
+ {
+  "question": "祈禱",
+  "choices": [
+   "もくとう",
+   "きとう",
+   "きどう",
+   "きっとう"
+  ],
+  "answer": "きとう",
+  "level": "ippan"
+ },
+ {
+  "question": "鳳蓮草",
+  "choices": [
+   "ほうれんぞう",
+   "ほうれんっそう",
+   "ほうおう",
+   "ほうれんそう"
+  ],
+  "answer": "ほうれんそう",
+  "level": "ippan"
+ },
+ {
+  "question": "田苑",
+  "choices": [
+   "でんえいん",
+   "ぎょえん",
+   "でんえん",
+   "いなか"
+  ],
+  "answer": "でんえん",
+  "level": "ippan"
+ },
+ {
+  "question": "水溜",
+  "choices": [
+   "さんすい",
+   "ためいき",
+   "みずたまり",
+   "みずだまり"
+  ],
+  "answer": "みずたまり",
+  "level": "ippan"
+ },
+ {
+  "question": "土圭",
+  "choices": [
+   "トルコ",
+   "どのう",
+   "とけい",
+   "とげい"
+  ],
+  "answer": "とけい",
+  "level": "ippan"
+ },
+ {
+  "question": "田畠",
+  "choices": [
+   "たはった",
+   "はなばたけ",
+   "くわばたけ",
+   "たはた"
+  ],
+  "answer": "たはた",
+  "level": "ippan"
+ },
+ {
+  "question": "茄子",
+  "choices": [
+   "あんず",
+   "なす",
+   "しゃくし",
+   "なっす"
+  ],
+  "answer": "なす",
+  "level": "ippan"
+ },
+ {
+  "question": "西瓜",
+  "choices": [
+   "エクアドル",
+   "ずいか",
+   "フランスご",
+   "すいか"
+  ],
+  "answer": "すいか",
+  "level": "ippan"
+ },
+ {
+  "question": "相槌",
+  "choices": [
+   "こづち",
+   "あいづち",
+   "そうこく",
+   "あいづっち"
+  ],
+  "answer": "あいづち",
+  "level": "ippan"
+ },
+ {
+  "question": "後篇",
+  "choices": [
+   "たんぺん",
+   "いご",
+   "こうべん",
+   "こうへん"
+  ],
+  "answer": "こうへん",
+  "level": "ippan"
+ },
+ {
+  "question": "是迄",
+  "choices": [
+   "これまで",
+   "これいまで",
+   "これまでい",
+   "いままで"
+  ],
+  "answer": "これまで",
+  "level": "ippan"
+ },
+ {
+  "question": "倦怠",
+  "choices": [
+   "けんだい",
+   "けんったい",
+   "けいんたい",
+   "けんたい"
+  ],
+  "answer": "けんたい",
+  "level": "ippan"
+ },
+ {
+  "question": "挽肉",
+  "choices": [
+   "ひぎにく",
+   "ばんか",
+   "ひきにく",
+   "にくまん"
+  ],
+  "answer": "ひきにく",
+  "level": "ippan"
+ },
+ {
+  "question": "莫大",
+  "choices": [
+   "だいがく",
+   "にんにく",
+   "ばくだい",
+   "ばっくだい"
+  ],
+  "answer": "ばくだい",
+  "level": "ippan"
+ },
+ {
+  "question": "輔助",
+  "choices": [
+   "ほどう",
+   "ほさ",
+   "ほしょ",
+   "ほじょ"
+  ],
+  "answer": "ほじょ",
+  "level": "ippan"
+ },
+ {
+  "question": "其其",
+  "choices": [
+   "そこらへん",
+   "それぞれ",
+   "それそれ",
+   "そのほか"
+  ],
+  "answer": "それぞれ",
+  "level": "ippan"
+ },
+ {
+  "question": "清楚",
+  "choices": [
+   "ぜいそ",
+   "せいそ",
+   "せいぞ",
+   "せいっそ"
+  ],
+  "answer": "せいそ",
+  "level": "ippan"
+ },
+ {
+  "question": "分娩",
+  "choices": [
+   "ぶんべん",
+   "あんぶん",
+   "ずいぶん",
+   "ふんべん"
+  ],
+  "answer": "ぶんべん",
+  "level": "ippan"
+ },
+ {
+  "question": "鳩首",
+  "choices": [
+   "ぎゅうしゅ",
+   "きゆうしゅ",
+   "きゅうごう",
+   "きゅうしゅ"
+  ],
+  "answer": "きゅうしゅ",
+  "level": "ippan"
+ },
+ {
+  "question": "連坐",
+  "choices": [
+   "れんざ",
+   "れいんざ",
+   "せいざ",
+   "ちゅうざ"
+  ],
+  "answer": "れんざ",
+  "level": "ippan"
+ },
+ {
+  "question": "比叡山",
+  "choices": [
+   "ひえいざん",
+   "えいち",
+   "わさび",
+   "びえいざん"
+  ],
+  "answer": "ひえいざん",
+  "level": "ippan"
+ },
+ {
+  "question": "綱曳",
+  "choices": [
+   "つなひき",
+   "つなぴき",
+   "つなひっき",
+   "そこびきあみ"
+  ],
+  "answer": "つなひき",
+  "level": "ippan"
+ },
+ {
+  "question": "坐敷",
+  "choices": [
+   "ざし",
+   "ざしっき",
+   "ざしき",
+   "せいざ"
+  ],
+  "answer": "ざしき",
+  "level": "ippan"
+ },
+ {
+  "question": "名蹟",
+  "choices": [
+   "あだな",
+   "きゅうせき",
+   "めいせき",
+   "めいっせき"
+  ],
+  "answer": "めいせき",
+  "level": "ippan"
+ },
+ {
+  "question": "菜蕗",
+  "choices": [
+   "ふっき",
+   "ふき",
+   "そうざい",
+   "わかめ"
+  ],
+  "answer": "ふき",
+  "level": "ippan"
+ },
+ {
+  "question": "掠奪",
+  "choices": [
+   "りやくだつ",
+   "りゃくしゅ",
+   "りゃくだつ",
+   "しんりゃく"
+  ],
+  "answer": "りゃくだつ",
+  "level": "ippan"
+ },
+ {
+  "question": "悲歎",
+  "choices": [
+   "ひだん",
+   "ひたん",
+   "たんそく",
+   "きょうたん"
+  ],
+  "answer": "ひたん",
+  "level": "ippan"
+ },
+ {
+  "question": "蝦夷",
+  "choices": [
+   "えみし",
+   "えみっし",
+   "じょうい",
+   "えいみし"
+  ],
+  "answer": "えみし",
+  "level": "ippan"
+ },
+ {
+  "question": "此等",
+  "choices": [
+   "これいら",
+   "こちら",
+   "それら",
+   "これら"
+  ],
+  "answer": "これら",
+  "level": "ippan"
+ },
+ {
+  "question": "菩提樹",
+  "choices": [
+   "こかげ",
+   "ぼうだいじゅ",
+   "ぼだいじゅ",
+   "ちょうちん"
+  ],
+  "answer": "ぼだいじゅ",
+  "level": "ippan"
+ },
+ {
+  "question": "味噌",
+  "choices": [
+   "みそ",
+   "みぞ",
+   "だいごみ",
+   "みそしる"
+  ],
+  "answer": "みそ",
+  "level": "ippan"
+ },
+ {
+  "question": "旭日",
+  "choices": [
+   "きょっくじつ",
+   "きょくじつ",
+   "おおみそか",
+   "にっソ"
+  ],
+  "answer": "きょくじつ",
+  "level": "ippan"
+ },
+ {
+  "question": "傭船",
+  "choices": [
+   "せんそう",
+   "ようせん",
+   "ようへい",
+   "ようぜん"
+  ],
+  "answer": "ようせん",
+  "level": "ippan"
+ },
+ {
+  "question": "山臥",
+  "choices": [
+   "やまぶっし",
+   "やまぶし",
+   "わさび",
+   "やまうば"
+  ],
+  "answer": "やまぶし",
+  "level": "ippan"
+ },
+ {
+  "question": "腹腔",
+  "choices": [
+   "ふくっくう",
+   "ふっくくう",
+   "こうこう",
+   "ふくくう"
+  ],
+  "answer": "ふくくう",
+  "level": "ippan"
+ },
+ {
+  "question": "渾然",
+  "choices": [
+   "こんぜん",
+   "げんぜん",
+   "ごんぜん",
+   "こんとん"
+  ],
+  "answer": "こんぜん",
+  "level": "ippan"
+ },
+ {
+  "question": "胡床",
+  "choices": [
+   "あぐら",
+   "きゅうり",
+   "あくら",
+   "ごま"
+  ],
+  "answer": "あぐら",
+  "level": "ippan"
+ },
+ {
+  "question": "蕎麦",
+  "choices": [
+   "そばや",
+   "そば",
+   "そうば",
+   "やきそば"
+  ],
+  "answer": "そば",
+  "level": "ippan"
+ },
+ {
+  "question": "三絃",
+  "choices": [
+   "さんげいん",
+   "さんげん",
+   "げんがく",
+   "シャンパン"
+  ],
+  "answer": "さんげん",
+  "level": "ippan"
+ },
+ {
+  "question": "盤陀",
+  "choices": [
+   "ばんだ",
+   "はんだ",
+   "カナダ",
+   "オランダ"
+  ],
+  "answer": "はんだ",
+  "level": "ippan"
+ },
+ {
+  "question": "些末",
+  "choices": [
+   "さまっつ",
+   "さまつ",
+   "まっしょう",
+   "まつえい"
+  ],
+  "answer": "さまつ",
+  "level": "ippan"
+ },
+ {
+  "question": "徽章",
+  "choices": [
+   "きしょう",
+   "きっしょう",
+   "ぎしょう",
+   "きしよう"
+  ],
+  "answer": "きしょう",
+  "level": "ippan"
+ },
+ {
+  "question": "惣菜",
+  "choices": [
+   "ふき",
+   "そざい",
+   "そうじゃ",
+   "そうざい"
+  ],
+  "answer": "そうざい",
+  "level": "ippan"
+ },
+ {
+  "question": "刺繡",
+  "choices": [
+   "しじゅう",
+   "ししゅう",
+   "しげき",
+   "ふうし"
+  ],
+  "answer": "ししゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "叡智",
+  "choices": [
+   "ちしき",
+   "ひえいざん",
+   "えいち",
+   "えち"
+  ],
+  "answer": "えいち",
+  "level": "ippan"
+ },
+ {
+  "question": "黙禱",
+  "choices": [
+   "もぐとう",
+   "もくとう",
+   "もくと",
+   "きとう"
+  ],
+  "answer": "もくとう",
+  "level": "ippan"
+ },
+ {
+  "question": "枢機卿",
+  "choices": [
+   "すうっききょう",
+   "すうききょう",
+   "すうきぎょう",
+   "すうききよう"
+  ],
+  "answer": "すうききょう",
+  "level": "ippan"
+ },
+ {
+  "question": "紙屑",
+  "choices": [
+   "ちりがみ",
+   "がみくず",
+   "かみくず",
+   "たこ"
+  ],
+  "answer": "かみくず",
+  "level": "ippan"
+ },
+ {
+  "question": "黄昏",
+  "choices": [
+   "こんすい",
+   "きゅうり",
+   "たそがれ",
+   "たそかれ"
+  ],
+  "answer": "たそがれ",
+  "level": "ippan"
+ },
+ {
+  "question": "百撰",
+  "choices": [
+   "ずさん",
+   "ひゃくぜん",
+   "ひゃくせん",
+   "ひゃくまん"
+  ],
+  "answer": "ひゃくせん",
+  "level": "ippan"
+ },
+ {
+  "question": "嘉留太",
+  "choices": [
+   "たいこう",
+   "かるた",
+   "かるだ",
+   "けいりゅう"
+  ],
+  "answer": "かるた",
+  "level": "ippan"
+ },
+ {
+  "question": "珊瑚",
+  "choices": [
+   "さんこ",
+   "さんご",
+   "ざんご",
+   "さんごう"
+  ],
+  "answer": "さんご",
+  "level": "ippan"
+ },
+ {
+  "question": "蒲団",
+  "choices": [
+   "ふとうん",
+   "しきぶとん",
+   "ふとん",
+   "がま"
+  ],
+  "answer": "ふとん",
+  "level": "ippan"
+ },
+ {
+  "question": "押捺",
+  "choices": [
+   "おうなっつ",
+   "おうなつ",
+   "おなつ",
+   "おうなづ"
+  ],
+  "answer": "おうなつ",
+  "level": "ippan"
+ },
+ {
+  "question": "琢磨",
+  "choices": [
+   "たっくま",
+   "だくま",
+   "たくま",
+   "たぐま"
+  ],
+  "answer": "たくま",
+  "level": "ippan"
+ },
+ {
+  "question": "傭兵",
+  "choices": [
+   "ようへい",
+   "ひやとい",
+   "ようへ",
+   "ようせん"
+  ],
+  "answer": "ようへい",
+  "level": "ippan"
+ },
+ {
+  "question": "勿論",
+  "choices": [
+   "べんろん",
+   "もっちろん",
+   "もちろん",
+   "よろん"
+  ],
+  "answer": "もちろん",
+  "level": "ippan"
+ },
+ {
+  "question": "青砥",
+  "choices": [
+   "あおと",
+   "あおうと",
+   "ペンキ",
+   "あおとう"
+  ],
+  "answer": "あおと",
+  "level": "ippan"
+ },
+ {
+  "question": "鄭重",
+  "choices": [
+   "ていっちょう",
+   "ていちょう",
+   "ていちよう",
+   "ていねい"
+  ],
+  "answer": "ていちょう",
+  "level": "ippan"
+ },
+ {
+  "question": "長篇",
+  "choices": [
+   "ごちょう",
+   "ちょうへん",
+   "ぜんぺん",
+   "ちようへん"
+  ],
+  "answer": "ちょうへん",
+  "level": "ippan"
+ },
+ {
+  "question": "精煉",
+  "choices": [
+   "ぜいれん",
+   "しゅうれん",
+   "せいれん",
+   "ねりせいひん"
+  ],
+  "answer": "せいれん",
+  "level": "ippan"
+ },
+ {
+  "question": "柚子",
+  "choices": [
+   "あんず",
+   "ゆす",
+   "ゆず",
+   "いす"
+  ],
+  "answer": "ゆず",
+  "level": "ippan"
+ },
+ {
+  "question": "晦日",
+  "choices": [
+   "にっソ",
+   "みそか",
+   "ひやとい",
+   "みぞか"
+  ],
+  "answer": "みそか",
+  "level": "ippan"
+ },
+ {
+  "question": "孟子",
+  "choices": [
+   "からし",
+   "もうし",
+   "しゃくし",
+   "もうじ"
+  ],
+  "answer": "もうし",
+  "level": "ippan"
+ },
+ {
+  "question": "兎角",
+  "choices": [
+   "とかく",
+   "とかっく",
+   "とうかく",
+   "とがく"
+  ],
+  "answer": "とかく",
+  "level": "ippan"
+ },
+ {
+  "question": "碧碧",
+  "choices": [
+   "あおあおう",
+   "あおうあお",
+   "あおあお",
+   "こんぺき"
+  ],
+  "answer": "あおあお",
+  "level": "ippan"
+ },
+ {
+  "question": "按排",
+  "choices": [
+   "あんばい",
+   "あんぶん",
+   "こうあん",
+   "あんはい"
+  ],
+  "answer": "あんばい",
+  "level": "ippan"
+ },
+ {
+  "question": "蒙古",
+  "choices": [
+   "ふるきず",
+   "もうっこ",
+   "こき",
+   "もうこ"
+  ],
+  "answer": "もうこ",
+  "level": "ippan"
+ },
+ {
+  "question": "椰子",
+  "choices": [
+   "はやし",
+   "やし",
+   "ちょうし",
+   "やっし"
+  ],
+  "answer": "やし",
+  "level": "ippan"
+ },
+ {
+  "question": "獅子",
+  "choices": [
+   "ギョーザ",
+   "ちょうし",
+   "しじ",
+   "しし"
+  ],
+  "answer": "しし",
+  "level": "ippan"
+ },
+ {
+  "question": "紙凧",
+  "choices": [
+   "たご",
+   "たこ",
+   "ちりがみ",
+   "かみくず"
+  ],
+  "answer": "たこ",
+  "level": "ippan"
+ },
+ {
+  "question": "楕円形",
+  "choices": [
+   "まるぎり",
+   "だえんけい",
+   "だえんげい",
+   "だえん"
+  ],
+  "answer": "だえんけい",
+  "level": "ippan"
+ },
+ {
+  "question": "戦捷",
+  "choices": [
+   "ぜんしょうせん",
+   "ぜんしょう",
+   "せんしょう",
+   "れんしょう"
+  ],
+  "answer": "せんしょう",
+  "level": "ippan"
+ },
+ {
+  "question": "大閤",
+  "choices": [
+   "ばくだい",
+   "たいこう",
+   "たいっこう",
+   "おおみそか"
+  ],
+  "answer": "たいこう",
+  "level": "ippan"
+ },
+ {
+  "question": "庇護",
+  "choices": [
+   "ひご",
+   "べんご",
+   "ひごう",
+   "ゴム"
+  ],
+  "answer": "ひご",
+  "level": "ippan"
+ },
+ {
+  "question": "妻楊枝",
+  "choices": [
+   "つまようじ",
+   "つまようし",
+   "づまようじ",
+   "やなぎ"
+  ],
+  "answer": "つまようじ",
+  "level": "ippan"
+ },
+ {
+  "question": "友誼",
+  "choices": [
+   "ゆうぎ",
+   "ゆうき",
+   "おんぎ",
+   "ほうゆう"
+  ],
+  "answer": "ゆうぎ",
+  "level": "ippan"
+ },
+ {
+  "question": "飛翔",
+  "choices": [
+   "ひしょう",
+   "ひっしょう",
+   "つぶて",
+   "ひまつ"
+  ],
+  "answer": "ひしょう",
+  "level": "ippan"
+ },
+ {
+  "question": "恢復",
+  "choices": [
+   "かいふっく",
+   "ふくしゅう",
+   "がいふく",
+   "かいふく"
+  ],
+  "answer": "かいふく",
+  "level": "ippan"
+ },
+ {
+  "question": "発註",
+  "choices": [
+   "はっちゅう",
+   "ちゅうもん",
+   "ちゅうしゃく",
+   "はっちゆう"
+  ],
+  "answer": "はっちゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "共棲",
+  "choices": [
+   "りょうせいるい",
+   "どうせい",
+   "きょうせい",
+   "きようせい"
+  ],
+  "answer": "きょうせい",
+  "level": "ippan"
+ },
+ {
+  "question": "月桂冠",
+  "choices": [
+   "らいげつ",
+   "げっけいかん",
+   "げっげいかん",
+   "げっしょく"
+  ],
+  "answer": "げっけいかん",
+  "level": "ippan"
+ },
+ {
+  "question": "御馳走様",
+  "choices": [
+   "ごちそさま",
+   "おみこし",
+   "おみくじ",
+   "ごちそうさま"
+  ],
+  "answer": "ごちそうさま",
+  "level": "ippan"
+ },
+ {
+  "question": "衣裳",
+  "choices": [
+   "いじょう",
+   "いしよう",
+   "いっしょう",
+   "いしょう"
+  ],
+  "answer": "いしょう",
+  "level": "ippan"
+ },
+ {
+  "question": "黒耀石",
+  "choices": [
+   "こくようせき",
+   "ばんじゃく",
+   "こうくようせき",
+   "いんせき"
+  ],
+  "answer": "こくようせき",
+  "level": "ippan"
+ },
+ {
+  "question": "田圃",
+  "choices": [
+   "でんえん",
+   "たんぼう",
+   "たはた",
+   "たんぼ"
+  ],
+  "answer": "たんぼ",
+  "level": "ippan"
+ },
+ {
+  "question": "醍醐",
+  "choices": [
+   "だいごう",
+   "だいご",
+   "たいご",
+   "だいごみ"
+  ],
+  "answer": "だいご",
+  "level": "ippan"
+ },
+ {
+  "question": "落磐",
+  "choices": [
+   "らくばん",
+   "しゅうらく",
+   "らっくばん",
+   "てんらく"
+  ],
+  "answer": "らくばん",
+  "level": "ippan"
+ },
+ {
+  "question": "今迄",
+  "choices": [
+   "これまで",
+   "ただいま",
+   "いままで",
+   "いままでい"
+  ],
+  "answer": "いままで",
+  "level": "ippan"
+ },
+ {
+  "question": "倭人",
+  "choices": [
+   "ろうにん",
+   "わしん",
+   "わか",
+   "わじん"
+  ],
+  "answer": "わじん",
+  "level": "ippan"
+ },
+ {
+  "question": "廻廊",
+  "choices": [
+   "かいてん",
+   "かいろ",
+   "かいろう",
+   "りんね"
+  ],
+  "answer": "かいろう",
+  "level": "ippan"
+ },
+ {
+  "question": "驚歎",
+  "choices": [
+   "たんそく",
+   "ぎょうたん",
+   "きょうたん",
+   "かんたん"
+  ],
+  "answer": "きょうたん",
+  "level": "ippan"
+ },
+ {
+  "question": "札幌",
+  "choices": [
+   "さっぽろう",
+   "さっぽろ",
+   "さっぽうろ",
+   "さぽろ"
+  ],
+  "answer": "さっぽろ",
+  "level": "ippan"
+ },
+ {
+  "question": "其方",
+  "choices": [
+   "そちら",
+   "そっちら",
+   "そこ",
+   "そのうち"
+  ],
+  "answer": "そちら",
+  "level": "ippan"
+ },
+ {
+  "question": "庄園",
+  "choices": [
+   "しょうえん",
+   "がくえん",
+   "しょうや",
+   "しょうえいん"
+  ],
+  "answer": "しょうえん",
+  "level": "ippan"
+ },
+ {
+  "question": "手帖",
+  "choices": [
+   "てすり",
+   "てっちょう",
+   "てちょう",
+   "てくび"
+  ],
+  "answer": "てちょう",
+  "level": "ippan"
+ },
+ {
+  "question": "生芥",
+  "choices": [
+   "なまこみ",
+   "なまごみ",
+   "からし",
+   "いきがい"
+  ],
+  "answer": "なまごみ",
+  "level": "ippan"
+ },
+ {
+  "question": "薩長",
+  "choices": [
+   "さっちょう",
+   "さっぢょう",
+   "ちょうへん",
+   "ぼさつ"
+  ],
+  "answer": "さっちょう",
+  "level": "ippan"
+ },
+ {
+  "question": "黒燿石",
+  "choices": [
+   "こくようせき",
+   "こくよせき",
+   "いんせき",
+   "こうせき"
+  ],
+  "answer": "こくようせき",
+  "level": "ippan"
+ },
+ {
+  "question": "木蔭",
+  "choices": [
+   "こかげ",
+   "ものかげ",
+   "たくぼく",
+   "こっかげ"
+  ],
+  "answer": "こかげ",
+  "level": "ippan"
+ },
+ {
+  "question": "註釈",
+  "choices": [
+   "ちゆうしゃく",
+   "はっちゅう",
+   "ちゅうもん",
+   "ちゅうしゃく"
+  ],
+  "answer": "ちゅうしゃく",
+  "level": "ippan"
+ },
+ {
+  "question": "桑畠",
+  "choices": [
+   "くわばたけ",
+   "ふそう",
+   "くわばたっけ",
+   "はなばたけ"
+  ],
+  "answer": "くわばたけ",
+  "level": "ippan"
+ },
+ {
+  "question": "苑内",
+  "choices": [
+   "えんない",
+   "そのうち",
+   "えいんない",
+   "はいえん"
+  ],
+  "answer": "えんない",
+  "level": "ippan"
+ },
+ {
+  "question": "貧之",
+  "choices": [
+   "びんぼう",
+   "びんほう",
+   "これら",
+   "うんでいのさ"
+  ],
+  "answer": "びんぼう",
+  "level": "ippan"
+ },
+ {
+  "question": "輔佐",
+  "choices": [
+   "ほさ",
+   "ほじょ",
+   "ほうさ",
+   "ほどう"
+  ],
+  "answer": "ほさ",
+  "level": "ippan"
+ },
+ {
+  "question": "蒼々",
+  "choices": [
+   "いよいよ",
+   "それぞれ",
+   "あおあおう",
+   "あおあお"
+  ],
+  "answer": "あおあお",
+  "level": "ippan"
+ },
+ {
+  "question": "確乎",
+  "choices": [
+   "かこ",
+   "かっこ",
+   "だんこ",
+   "ああ"
+  ],
+  "answer": "かっこ",
+  "level": "ippan"
+ },
+ {
+  "question": "釈迦",
+  "choices": [
+   "しゃか",
+   "しやか",
+   "ばか",
+   "しゃっか"
+  ],
+  "answer": "しゃか",
+  "level": "ippan"
+ },
+ {
+  "question": "防空壕",
+  "choices": [
+   "ぼうぎょ",
+   "そとぼり",
+   "ぼうくうこう",
+   "ぼうくうごう"
+  ],
+  "answer": "ぼうくうごう",
+  "level": "ippan"
+ },
+ {
+  "question": "考按",
+  "choices": [
+   "こうあん",
+   "あんばい",
+   "あんま",
+   "ごうあん"
+  ],
+  "answer": "こうあん",
+  "level": "ippan"
+ },
+ {
+  "question": "坐礁",
+  "choices": [
+   "あぐら",
+   "ざしょう",
+   "ざじょう",
+   "せいざ"
+  ],
+  "answer": "ざしょう",
+  "level": "ippan"
+ },
+ {
+  "question": "菖蒲",
+  "choices": [
+   "がま",
+   "しょうぶ",
+   "しょうふ",
+   "ふとん"
+  ],
+  "answer": "しょうぶ",
+  "level": "ippan"
+ },
+ {
+  "question": "其奴",
+  "choices": [
+   "それら",
+   "そこ",
+   "そいっつ",
+   "そいつ"
+  ],
+  "answer": "そいつ",
+  "level": "ippan"
+ },
+ {
+  "question": "焼肴",
+  "choices": [
+   "やきざかな",
+   "やきざうかな",
+   "こざかな",
+   "すきやき"
+  ],
+  "answer": "やきざかな",
+  "level": "ippan"
+ },
+ {
+  "question": "伊達",
+  "choices": [
+   "イタリア",
+   "ミイラ",
+   "だてい",
+   "だて"
+  ],
+  "answer": "だて",
+  "level": "ippan"
+ },
+ {
+  "question": "智識",
+  "choices": [
+   "ちしき",
+   "ちけん",
+   "かんしき",
+   "ぢしき"
+  ],
+  "answer": "ちしき",
+  "level": "ippan"
+ },
+ {
+  "question": "胡坐",
+  "choices": [
+   "こしょう",
+   "ちゅうざ",
+   "あくら",
+   "あぐら"
+  ],
+  "answer": "あぐら",
+  "level": "ippan"
+ },
+ {
+  "question": "渾沌",
+  "choices": [
+   "あだな",
+   "こんとん",
+   "こんぜん",
+   "こんっとん"
+  ],
+  "answer": "こんとん",
+  "level": "ippan"
+ },
+ {
+  "question": "投函",
+  "choices": [
+   "とうかん",
+   "とかん",
+   "とうっかん",
+   "どうかん"
+  ],
+  "answer": "とうかん",
+  "level": "ippan"
+ },
+ {
+  "question": "漕艇",
+  "choices": [
+   "そうて",
+   "そてい",
+   "そうてい",
+   "ぞうてい"
+  ],
+  "answer": "そうてい",
+  "level": "ippan"
+ },
+ {
+  "question": "祈祷",
+  "choices": [
+   "きとう",
+   "もくとう",
+   "きどう",
+   "きと"
+  ],
+  "answer": "きとう",
+  "level": "ippan"
+ },
+ {
+  "question": "群棲",
+  "choices": [
+   "ぐんせい",
+   "ぐんしゅう",
+   "くんせい",
+   "どうせい"
+  ],
+  "answer": "ぐんせい",
+  "level": "ippan"
+ },
+ {
+  "question": "昂揚",
+  "choices": [
+   "こうよう",
+   "こうふん",
+   "こうしん",
+   "こうよ"
+  ],
+  "answer": "こうよう",
+  "level": "ippan"
+ },
+ {
+  "question": "続篇",
+  "choices": [
+   "ぞっくへん",
+   "ぞくへん",
+   "ちょうへん",
+   "よこくへん"
+  ],
+  "answer": "ぞくへん",
+  "level": "ippan"
+ },
+ {
+  "question": "八幡",
+  "choices": [
+   "はちまんぐう",
+   "はちまん",
+   "たなばた",
+   "はっちまん"
+  ],
+  "answer": "はちまん",
+  "level": "ippan"
+ },
+ {
+  "question": "欧洲",
+  "choices": [
+   "しらす",
+   "おうしゅう",
+   "おしゅう",
+   "ヨーロッパ"
+  ],
+  "answer": "おうしゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "其処",
+  "choices": [
+   "そっこ",
+   "ここら",
+   "そのうち",
+   "そこ"
+  ],
+  "answer": "そこ",
+  "level": "ippan"
+ },
+ {
+  "question": "靖国神社",
+  "choices": [
+   "やすくにじんじや",
+   "やすくにじんしゃ",
+   "やすくにじんじゃ",
+   "やずくにじんじゃ"
+  ],
+  "answer": "やすくにじんじゃ",
+  "level": "ippan"
+ },
+ {
+  "question": "葡萄",
+  "choices": [
+   "ぶどう",
+   "ポルトガル",
+   "ぶとう",
+   "ぶど"
+  ],
+  "answer": "ぶどう",
+  "level": "ippan"
+ },
+ {
+  "question": "自撰",
+  "choices": [
+   "しせん",
+   "せんしゅう",
+   "じせん",
+   "ずさん"
+  ],
+  "answer": "じせん",
+  "level": "ippan"
+ },
+ {
+  "question": "黙祷",
+  "choices": [
+   "きとう",
+   "もくっとう",
+   "もくとう",
+   "もくどう"
+  ],
+  "answer": "もくとう",
+  "level": "ippan"
+ },
+ {
+  "question": "底曳網",
+  "choices": [
+   "つなひき",
+   "そうこびきあみ",
+   "ぞこびきあみ",
+   "そこびきあみ"
+  ],
+  "answer": "そこびきあみ",
+  "level": "ippan"
+ },
+ {
+  "question": "喰物",
+  "choices": [
+   "くいもの",
+   "ものかげ",
+   "ぐいもの",
+   "ばくろう"
+  ],
+  "answer": "くいもの",
+  "level": "ippan"
+ },
+ {
+  "question": "奇蹟",
+  "choices": [
+   "きせいき",
+   "いせき",
+   "きせき",
+   "ひっせき"
+  ],
+  "answer": "きせき",
+  "level": "ippan"
+ },
+ {
+  "question": "蝶蝶",
+  "choices": [
+   "ちょうちょう",
+   "ぢょうちょう",
+   "ちようちょう",
+   "ちょうぢょう"
+  ],
+  "answer": "ちょうちょう",
+  "level": "ippan"
+ },
+ {
+  "question": "南瓜",
+  "choices": [
+   "かぼうちゃ",
+   "きゅうり",
+   "かぼちゃ",
+   "エクアドル"
+  ],
+  "answer": "かぼちゃ",
+  "level": "ippan"
+ },
+ {
+  "question": "味噌汁",
+  "choices": [
+   "みそしる",
+   "だいごみ",
+   "みそ",
+   "みぞしる"
+  ],
+  "answer": "みそしる",
+  "level": "ippan"
+ },
+ {
+  "question": "埴輪",
+  "choices": [
+   "りんね",
+   "くびわ",
+   "はにわ",
+   "ばにわ"
+  ],
+  "answer": "はにわ",
+  "level": "ippan"
+ },
+ {
+  "question": "樹蔭",
+  "choices": [
+   "こかげ",
+   "ひかげ",
+   "ごかげ",
+   "ものかげ"
+  ],
+  "answer": "こかげ",
+  "level": "ippan"
+ },
+ {
+  "question": "錯綜",
+  "choices": [
+   "そうり",
+   "さくそう",
+   "さっくそう",
+   "そうごう"
+  ],
+  "answer": "さくそう",
+  "level": "ippan"
+ },
+ {
+  "question": "喧騒",
+  "choices": [
+   "けんっそう",
+   "くちげんか",
+   "けんか",
+   "けんそう"
+  ],
+  "answer": "けんそう",
+  "level": "ippan"
+ },
+ {
+  "question": "昏睡",
+  "choices": [
+   "こんっすい",
+   "こうんすい",
+   "たそがれ",
+   "こんすい"
+  ],
+  "answer": "こんすい",
+  "level": "ippan"
+ },
+ {
+  "question": "喧嘩",
+  "choices": [
+   "けんか",
+   "くちげんか",
+   "けんそう",
+   "けいんか"
+  ],
+  "answer": "けんか",
+  "level": "ippan"
+ },
+ {
+  "question": "白鷺",
+  "choices": [
+   "はくあ",
+   "はくあき",
+   "じらさぎ",
+   "しらさぎ"
+  ],
+  "answer": "しらさぎ",
+  "level": "ippan"
+ },
+ {
+  "question": "受註",
+  "choices": [
+   "じゆちゅう",
+   "がいちゅう",
+   "じゅちゅう",
+   "ちゅうしゃく"
+  ],
+  "answer": "じゅちゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "鋒先",
+  "choices": [
+   "ほこさぎ",
+   "ほこさき",
+   "せんべん",
+   "せんぽう"
+  ],
+  "answer": "ほこさき",
+  "level": "ippan"
+ },
+ {
+  "question": "林檎",
+  "choices": [
+   "きょうりん",
+   "りんこ",
+   "りんご",
+   "りんごう"
+  ],
+  "answer": "りんご",
+  "level": "ippan"
+ },
+ {
+  "question": "手摺",
+  "choices": [
+   "てすり",
+   "てちょう",
+   "てくび",
+   "ですり"
+  ],
+  "answer": "てすり",
+  "level": "ippan"
+ },
+ {
+  "question": "末梢",
+  "choices": [
+   "さまつ",
+   "まつえい",
+   "まっしょう",
+   "まっじょう"
+  ],
+  "answer": "まっしょう",
+  "level": "ippan"
+ },
+ {
+  "question": "侵掠",
+  "choices": [
+   "しんりやく",
+   "しんりゃく",
+   "しんしょく",
+   "しんこう"
+  ],
+  "answer": "しんりゃく",
+  "level": "ippan"
+ },
+ {
+  "question": "莫迦",
+  "choices": [
+   "しゃか",
+   "ばっか",
+   "ばか",
+   "モスクワ"
+  ],
+  "answer": "ばか",
+  "level": "ippan"
+ },
+ {
+  "question": "牡丹",
+  "choices": [
+   "ぼったん",
+   "かき",
+   "ぼたん",
+   "おじか"
+  ],
+  "answer": "ぼたん",
+  "level": "ippan"
+ },
+ {
+  "question": "翠色",
+  "choices": [
+   "ばらいろ",
+   "いろずり",
+   "みどりいろ",
+   "みどりいろう"
+  ],
+  "answer": "みどりいろ",
+  "level": "ippan"
+ },
+ {
+  "question": "罵迦",
+  "choices": [
+   "しゃか",
+   "ばっか",
+   "はか",
+   "ばか"
+  ],
+  "answer": "ばか",
+  "level": "ippan"
+ },
+ {
+  "question": "御苑",
+  "choices": [
+   "きょえん",
+   "えんない",
+   "でんえん",
+   "ぎょえん"
+  ],
+  "answer": "ぎょえん",
+  "level": "ippan"
+ },
+ {
+  "question": "牡鹿",
+  "choices": [
+   "かき",
+   "ぼたん",
+   "おじか",
+   "おうじか"
+  ],
+  "answer": "おじか",
+  "level": "ippan"
+ },
+ {
+  "question": "綜括",
+  "choices": [
+   "さくそう",
+   "そかつ",
+   "そうごう",
+   "そうかつ"
+  ],
+  "answer": "そうかつ",
+  "level": "ippan"
+ },
+ {
+  "question": "醇朴",
+  "choices": [
+   "じゅんぼく",
+   "じゅんぼうく",
+   "じゅんぼっく",
+   "じゅんせい"
+  ],
+  "answer": "じゅんぼく",
+  "level": "ippan"
+ },
+ {
+  "question": "顔馴染",
+  "choices": [
+   "となかい",
+   "おさななじみ",
+   "がおなじみ",
+   "かおなじみ"
+  ],
+  "answer": "かおなじみ",
+  "level": "ippan"
+ },
+ {
+  "question": "萌芽",
+  "choices": [
+   "ほうが",
+   "ほうか",
+   "ぽうが",
+   "ほが"
+  ],
+  "answer": "ほうが",
+  "level": "ippan"
+ },
+ {
+  "question": "伸暢",
+  "choices": [
+   "りゅうちょう",
+   "のんき",
+   "しんちょう",
+   "しんっちょう"
+  ],
+  "answer": "しんちょう",
+  "level": "ippan"
+ },
+ {
+  "question": "汐時",
+  "choices": [
+   "しおうどき",
+   "しおどき",
+   "じこく",
+   "しおかぜ"
+  ],
+  "answer": "しおどき",
+  "level": "ippan"
+ },
+ {
+  "question": "断乎",
+  "choices": [
+   "ああ",
+   "たんこ",
+   "かっこ",
+   "だんこ"
+  ],
+  "answer": "だんこ",
+  "level": "ippan"
+ },
+ {
+  "question": "巌壁",
+  "choices": [
+   "がんぺいき",
+   "しょうへき",
+   "がんぺき",
+   "がんぺぎ"
+  ],
+  "answer": "がんぺき",
+  "level": "ippan"
+ },
+ {
+  "question": "同朋",
+  "choices": [
+   "とうぼう",
+   "ほうゆう",
+   "どうざ",
+   "どうぼう"
+  ],
+  "answer": "どうぼう",
+  "level": "ippan"
+ },
+ {
+  "question": "敷蒲団",
+  "choices": [
+   "ざぶとん",
+   "しきぶとうん",
+   "しきぶとん",
+   "しょうぶ"
+  ],
+  "answer": "しきぶとん",
+  "level": "ippan"
+ },
+ {
+  "question": "沢庵",
+  "choices": [
+   "たくあん",
+   "ぜいたく",
+   "たぐあん",
+   "だくあん"
+  ],
+  "answer": "たくあん",
+  "level": "ippan"
+ },
+ {
+  "question": "廃苑",
+  "choices": [
+   "ばいえん",
+   "はいきょ",
+   "はいえん",
+   "れいえん"
+  ],
+  "answer": "はいえん",
+  "level": "ippan"
+ },
+ {
+  "question": "柊木",
+  "choices": [
+   "こかげ",
+   "ひいらき",
+   "ひいらぎ",
+   "ミイラ"
+  ],
+  "answer": "ひいらぎ",
+  "level": "ippan"
+ },
+ {
+  "question": "吞気",
+  "choices": [
+   "あっけ",
+   "のんっき",
+   "のんき",
+   "きまま"
+  ],
+  "answer": "のんき",
+  "level": "ippan"
+ },
+ {
+  "question": "本末顚倒",
+  "choices": [
+   "ほんまつてんとう",
+   "ぼんまつてんとう",
+   "ほんまつてんっとう",
+   "ほうんまつてんとう"
+  ],
+  "answer": "ほんまつてんとう",
+  "level": "ippan"
+ },
+ {
+  "question": "先鞭",
+  "choices": [
+   "せんぽう",
+   "ぜんべん",
+   "ほこさき",
+   "せんべん"
+  ],
+  "answer": "せんべん",
+  "level": "ippan"
+ },
+ {
+  "question": "凱旋",
+  "choices": [
+   "せんかい",
+   "かいせん",
+   "あっせん",
+   "がいせん"
+  ],
+  "answer": "がいせん",
+  "level": "ippan"
+ },
+ {
+  "question": "獅子舞",
+  "choices": [
+   "ししまい",
+   "じしまい",
+   "ネジ",
+   "なす"
+  ],
+  "answer": "ししまい",
+  "level": "ippan"
+ },
+ {
+  "question": "前篇",
+  "choices": [
+   "ぜんぺいん",
+   "ぜんぺん",
+   "たんぺん",
+   "ちょうへん"
+  ],
+  "answer": "ぜんぺん",
+  "level": "ippan"
+ },
+ {
+  "question": "吾吾",
+  "choices": [
+   "われわれい",
+   "われいわれ",
+   "われわれ",
+   "われら"
+  ],
+  "answer": "われわれ",
+  "level": "ippan"
+ },
+ {
+  "question": "倭歌",
+  "choices": [
+   "おうか",
+   "わが",
+   "わご",
+   "わか"
+  ],
+  "answer": "わか",
+  "level": "ippan"
+ },
+ {
+  "question": "疏外",
+  "choices": [
+   "がいかく",
+   "そとぼり",
+   "そがい",
+   "そうがい"
+  ],
+  "answer": "そがい",
+  "level": "ippan"
+ },
+ {
+  "question": "仏蘭西語",
+  "choices": [
+   "らんがく",
+   "ふつご",
+   "フランスご",
+   "フランスごう"
+  ],
+  "answer": "フランスご",
+  "level": "ippan"
+ },
+ {
+  "question": "笹原",
+  "choices": [
+   "ざさはら",
+   "ささはら",
+   "さっさはら",
+   "ささばら"
+  ],
+  "answer": "ささはら",
+  "level": "ippan"
+ },
+ {
+  "question": "英智",
+  "choices": [
+   "たんぽぽ",
+   "えいっち",
+   "えいれい",
+   "えいち"
+  ],
+  "answer": "えいち",
+  "level": "ippan"
+ },
+ {
+  "question": "可憐",
+  "choices": [
+   "かれん",
+   "かなり",
+   "かれいん",
+   "がれん"
+  ],
+  "answer": "かれん",
+  "level": "ippan"
+ },
+ {
+  "question": "杏林",
+  "choices": [
+   "りんご",
+   "あんず",
+   "きようりん",
+   "きょうりん"
+  ],
+  "answer": "きょうりん",
+  "level": "ippan"
+ },
+ {
+  "question": "編輯",
+  "choices": [
+   "しゅうしゅう",
+   "へんしゅう",
+   "へんさん",
+   "へんしゆう"
+  ],
+  "answer": "へんしゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "蘇生",
+  "choices": [
+   "しょうが",
+   "そぜい",
+   "いきがい",
+   "そせい"
+  ],
+  "answer": "そせい",
+  "level": "ippan"
+ },
+ {
+  "question": "此処等",
+  "choices": [
+   "こっこら",
+   "こいつ",
+   "ここら",
+   "そこらへん"
+  ],
+  "answer": "ここら",
+  "level": "ippan"
+ },
+ {
+  "question": "此奴",
+  "choices": [
+   "こいつ",
+   "あちこち",
+   "こういつ",
+   "こちら"
+  ],
+  "answer": "こいつ",
+  "level": "ippan"
+ },
+ {
+  "question": "弘大",
+  "choices": [
+   "ごうだい",
+   "おおげさ",
+   "こうだい",
+   "おおみそか"
+  ],
+  "answer": "こうだい",
+  "level": "ippan"
+ },
+ {
+  "question": "撒収",
+  "choices": [
+   "てっじゅう",
+   "テキサス",
+   "てっしゅう",
+   "さんすい"
+  ],
+  "answer": "てっしゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "神輿",
+  "choices": [
+   "みこっし",
+   "よろん",
+   "おみくじ",
+   "みこし"
+  ],
+  "answer": "みこし",
+  "level": "ippan"
+ },
+ {
+  "question": "仁俠",
+  "choices": [
+   "にんっきょう",
+   "きょうかく",
+   "にんきよう",
+   "にんきょう"
+  ],
+  "answer": "にんきょう",
+  "level": "ippan"
+ },
+ {
+  "question": "栖息",
+  "choices": [
+   "せいっそく",
+   "せいそく",
+   "ためいき",
+   "ぜんそく"
+  ],
+  "answer": "せいそく",
+  "level": "ippan"
+ },
+ {
+  "question": "物蔭",
+  "choices": [
+   "ものかけ",
+   "かげぐち",
+   "ものかげ",
+   "こうぶつ"
+  ],
+  "answer": "ものかげ",
+  "level": "ippan"
+ },
+ {
+  "question": "疏通",
+  "choices": [
+   "そつう",
+   "そがい",
+   "ぞつう",
+   "かんつう"
+  ],
+  "answer": "そつう",
+  "level": "ippan"
+ },
+ {
+  "question": "裡面",
+  "choices": [
+   "にきび",
+   "まじめ",
+   "りめいん",
+   "りめん"
+  ],
+  "answer": "りめん",
+  "level": "ippan"
+ },
+ {
+  "question": "八幡宮",
+  "choices": [
+   "りゅうぐう",
+   "はぢまんぐう",
+   "はちまんぐう",
+   "はちまん"
+  ],
+  "answer": "はちまんぐう",
+  "level": "ippan"
+ },
+ {
+  "question": "叡知",
+  "choices": [
+   "えいっち",
+   "ひえいざん",
+   "えいち",
+   "えち"
+  ],
+  "answer": "えいち",
+  "level": "ippan"
+ },
+ {
+  "question": "特輯",
+  "choices": [
+   "とうくしゅう",
+   "とくせん",
+   "とくしゅう",
+   "へんしゅう"
+  ],
+  "answer": "とくしゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "蒐輯",
+  "choices": [
+   "しゅうか",
+   "とくしゅう",
+   "しゅうっしゅう",
+   "しゅうしゅう"
+  ],
+  "answer": "しゅうしゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "撰集",
+  "choices": [
+   "じせん",
+   "とくせん",
+   "せんしゅう",
+   "せんっしゅう"
+  ],
+  "answer": "せんしゅう",
+  "level": "ippan"
+ },
+ {
+  "question": "遺蹟",
+  "choices": [
+   "いっせき",
+   "いせき",
+   "めいせき",
+   "ひっせき"
+  ],
+  "answer": "いせき",
+  "level": "ippan"
+ },
+ {
+  "question": "蘭学",
+  "choices": [
+   "らんがく",
+   "らんかく",
+   "テヘラン",
+   "イングランド"
+  ],
+  "answer": "らんがく",
+  "level": "ippan"
+ },
+ {
+  "question": "小槌",
+  "choices": [
+   "こづち",
+   "こうづち",
+   "こさじ",
+   "あいづち"
+  ],
+  "answer": "こづち",
+  "level": "ippan"
+ },
+ {
+  "question": "明亮",
+  "choices": [
+   "べんめい",
+   "めいりょう",
+   "そうめい",
+   "めりょう"
+  ],
+  "answer": "めいりょう",
+  "level": "ippan"
+ },
+ {
+  "question": "勢揃",
+  "choices": [
+   "せいぞろい",
+   "すうせい",
+   "ぜいぞろい",
+   "せいぞろうい"
+  ],
+  "answer": "せいぞろい",
+  "level": "ippan"
+ },
+ {
+  "question": "坐視",
+  "choices": [
+   "ちゅうざ",
+   "ざせき",
+   "ざっし",
+   "ざし"
+  ],
+  "answer": "ざし",
+  "level": "ippan"
+ },
+ {
+  "question": "廿日",
+  "choices": [
+   "ついたち",
+   "にっソ",
+   "はつか",
+   "はづか"
+  ],
+  "answer": "はつか",
+  "level": "ippan"
+ },
+ {
+  "question": "金槌",
+  "choices": [
+   "かなづぢ",
+   "かなづち",
+   "カナリア",
+   "こづち"
+  ],
+  "answer": "かなづち",
+  "level": "ippan"
+ },
+ {
+  "question": "霊苑",
+  "choices": [
+   "ぞうえん",
+   "こうえん",
+   "れいえん",
+   "れいえいん"
+  ],
+  "answer": "れいえん",
+  "level": "ippan"
+ },
+ {
+  "question": "按分",
+  "choices": [
+   "ぶんすいれい",
+   "あんぶん",
+   "あんふん",
+   "こうあん"
+  ],
+  "answer": "あんぶん",
+  "level": "ippan"
+ },
+ {
+  "question": "坐禅",
+  "choices": [
+   "ざうぜん",
+   "あぐら",
+   "ざしき",
+   "ざぜん"
+  ],
+  "answer": "ざぜん",
+  "level": "ippan"
+ },
+ {
+  "question": "同坐",
+  "choices": [
+   "ちゅうざ",
+   "どざ",
+   "ざせき",
+   "どうざ"
+  ],
+  "answer": "どうざ",
+  "level": "ippan"
+ },
+ {
+  "question": "醍醐味",
+  "choices": [
+   "みそ",
+   "みそしる",
+   "だいこみ",
+   "だいごみ"
+  ],
+  "answer": "だいごみ",
+  "level": "ippan"
+ },
+ {
+  "question": "雲泥之差",
+  "choices": [
+   "さしつかえ",
+   "びんぼう",
+   "うんでいのさ",
+   "うんでいのっさ"
+  ],
+  "answer": "うんでいのさ",
+  "level": "ippan"
+ },
+ {
+  "question": "負托",
+  "choices": [
+   "ふたぐ",
+   "ひいき",
+   "ふたく",
+   "いたく"
+  ],
+  "answer": "ふたく",
+  "level": "ippan"
+ },
+ {
+  "question": "旧蹟",
+  "choices": [
+   "めいせき",
+   "きゅうせき",
+   "いせき",
+   "きゆうせき"
+  ],
+  "answer": "きゅうせき",
+  "level": "ippan"
+ },
+ {
+  "question": "蝶々",
+  "choices": [
+   "ちようちょう",
+   "ちょうちょう",
+   "うんぬん",
+   "われわれ"
+  ],
+  "answer": "ちょうちょう",
+  "level": "ippan"
+ },
+ {
+  "question": "蕃主",
+  "choices": [
+   "はんっしゅ",
+   "はんしゅ",
+   "しゅけん",
+   "はんじょう"
+  ],
+  "answer": "はんしゅ",
+  "level": "ippan"
+ },
+ {
+  "question": "智見",
+  "choices": [
+   "ちかく",
+   "ちけん",
+   "えいち",
+   "ちげん"
+  ],
+  "answer": "ちけん",
+  "level": "ippan"
+ },
+ {
+  "question": "挺身",
+  "choices": [
+   "ていしん",
+   "そうしん",
+   "しんたい",
+   "てしん"
+  ],
+  "answer": "ていしん",
+  "level": "ippan"
+ },
+ {
+  "question": "伝播",
+  "choices": [
+   "すいこでん",
+   "でいんぱ",
+   "でんぱ",
+   "てんぱ"
+  ],
+  "answer": "でんぱ",
+  "level": "ippan"
+ },
+ {
+  "question": "其処等辺",
+  "choices": [
+   "それら",
+   "そのほか",
+   "そこらへん",
+   "そこらへいん"
+  ],
+  "answer": "そこらへん",
+  "level": "ippan"
+ },
+ {
+  "question": "輿論",
+  "choices": [
+   "よろうん",
+   "よろん",
+   "もちろん",
+   "おみこし"
+  ],
+  "answer": "よろん",
+  "level": "ippan"
+ },
+ {
+  "question": "夜叉",
+  "choices": [
+   "こうさ",
+   "やしゃ",
+   "よばなし",
+   "やじゃ"
+  ],
+  "answer": "やしゃ",
+  "level": "ippan"
+ },
+ {
+  "question": "其々",
+  "choices": [
+   "それいぞれ",
+   "それぞれ",
+   "それら",
+   "ちょうちょう"
+  ],
+  "answer": "それぞれ",
+  "level": "ippan"
+ },
+ {
+  "question": "外苑",
+  "choices": [
+   "かいえん",
+   "ぎょえん",
+   "にゅうえん",
+   "がいえん"
+  ],
+  "answer": "がいえん",
+  "level": "ippan"
+ },
+ {
+  "question": "吾々",
+  "choices": [
+   "われいわれ",
+   "われわれ",
+   "あおあお",
+   "しばしば"
+  ],
+  "answer": "われわれ",
+  "level": "ippan"
+ },
+ {
+  "question": "徴傭",
+  "choices": [
+   "ちようよう",
+   "ひやとい",
+   "ちょうよう",
+   "ようへい"
+  ],
+  "answer": "ちょうよう",
+  "level": "ippan"
+ },
+ {
+  "question": "綜理",
+  "choices": [
+   "そうらん",
+   "そうり",
+   "そり",
+   "そうごう"
+  ],
+  "answer": "そうり",
+  "level": "ippan"
+ },
+ {
+  "question": "両棲類",
+  "choices": [
+   "りようせいるい",
+   "せいそくち",
+   "りょうせいるい",
+   "はちゅうるい"
+  ],
+  "answer": "りょうせいるい",
+  "level": "ippan"
+ },
+ {
+  "question": "琵琶湖",
+  "choices": [
+   "びわこ",
+   "びわっこ",
+   "びわご",
+   "びわ"
+  ],
+  "answer": "びわこ",
+  "level": "ippan"
+ },
+ {
+  "question": "智覚",
+  "choices": [
+   "ちかく",
+   "チリ",
+   "ちのう",
+   "ぢかく"
+  ],
+  "answer": "ちかく",
+  "level": "ippan"
+ },
+ {
+  "question": "高嶺",
+  "choices": [
+   "たかね",
+   "たっかね",
+   "たがね",
+   "たかねい"
+  ],
+  "answer": "たかね",
+  "level": "ippan"
+ },
+ {
+  "question": "飛沫",
+  "choices": [
+   "つぶて",
+   "ひまつ",
+   "ひしょう",
+   "ぴまつ"
+  ],
+  "answer": "ひまつ",
+  "level": "ippan"
+ },
+ {
+  "question": "不馴",
+  "choices": [
+   "ふにん",
+   "ぷなれ",
+   "ふなれ",
+   "ふと"
+  ],
+  "answer": "ふなれ",
+  "level": "ippan"
+ },
+ {
+  "question": "斡旋",
+  "choices": [
+   "あっせん",
+   "あせん",
+   "ネジ",
+   "がいせん"
+  ],
+  "answer": "あっせん",
+  "level": "ippan"
+ },
+ {
+  "question": "分水嶺",
+  "choices": [
+   "みずかさ",
+   "ぶんすいれい",
+   "ぶんっすいれい",
+   "すいこでん"
+  ],
+  "answer": "ぶんすいれい",
+  "level": "ippan"
+ },
+ {
+  "question": "智能",
+  "choices": [
+   "ぢのう",
+   "ちのう",
+   "きち",
+   "ちりょく"
+  ],
+  "answer": "ちのう",
+  "level": "ippan"
+ },
+ {
+  "question": "全篇",
+  "choices": [
+   "ぜんぺん",
+   "ぜんっぺん",
+   "よこくへん",
+   "たんぺん"
+  ],
+  "answer": "ぜんぺん",
+  "level": "ippan"
+ },
+ {
+  "question": "其程",
+  "choices": [
+   "それほど",
+   "ぞれほど",
+   "そちら",
+   "それぞれ"
+  ],
+  "answer": "それほど",
+  "level": "ippan"
+ },
+ {
+  "question": "灼熱",
+  "choices": [
+   "しゃくねつ",
+   "ねつべん",
+   "しゃっくねつ",
+   "しゃくねいつ"
+  ],
+  "answer": "しゃくねつ",
+  "level": "ippan"
+ },
+ {
+  "question": "鳳凰",
+  "choices": [
+   "ほうれんそう",
+   "ほおう",
+   "ぽうおう",
+   "ほうおう"
+  ],
+  "answer": "ほうおう",
+  "level": "ippan"
+ },
+ {
+  "question": "竣功",
+  "choices": [
+   "しゆんこう",
+   "しゅんこ",
+   "しゅんっこう",
+   "しゅんこう"
+  ],
+  "answer": "しゅんこう",
+  "level": "ippan"
+ },
+ {
+  "question": "撒布",
+  "choices": [
+   "さんぷ",
+   "さんすい",
+   "テキサス",
+   "さんっぷ"
+  ],
+  "answer": "さんぷ",
+  "level": "ippan"
+ },
+ {
+  "question": "厨房",
+  "choices": [
+   "ちゆうぼう",
+   "ちゅうぼ",
+   "だんぼう",
+   "ちゅうぼう"
+  ],
+  "answer": "ちゅうぼう",
+  "level": "ippan"
+ },
+ {
+  "question": "膨脹",
+  "choices": [
+   "ぼうちょう",
+   "ぼうぢょう",
+   "ぼうちよう",
+   "ぼちょう"
+  ],
+  "answer": "ぼうちょう",
+  "level": "ippan"
+ },
+ {
+  "question": "寒椿",
+  "choices": [
+   "ちんじ",
+   "かんっつばき",
+   "かんつばき",
+   "かんづばき"
+  ],
+  "answer": "かんつばき",
+  "level": "ippan"
+ },
+ {
+  "question": "袈裟",
+  "choices": [
+   "おおげさ",
+   "けっさ",
+   "けいさ",
+   "けさ"
+  ],
+  "answer": "けさ",
+  "level": "ippan"
+ },
+ {
+  "question": "恰好",
+  "choices": [
+   "かっこう",
+   "しこう",
+   "かこう",
+   "ちょうど"
+  ],
+  "answer": "かっこう",
+  "level": "ippan"
+ },
+ {
+  "question": "口腔",
+  "choices": [
+   "こうこう",
+   "こうこ",
+   "いとぐち",
+   "わるぐち"
+  ],
+  "answer": "こうこう",
+  "level": "ippan"
+ },
+ {
+  "question": "歎願",
+  "choices": [
+   "かんたん",
+   "たんがん",
+   "だんがん",
+   "こんがん"
+  ],
+  "answer": "たんがん",
+  "level": "ippan"
+ },
+ {
+  "question": "特撰",
+  "choices": [
+   "とくせん",
+   "とくせいん",
+   "とくしゅう",
+   "ずさん"
+  ],
+  "answer": "とくせん",
+  "level": "ippan"
+ },
+ {
+  "question": "綜覧",
+  "choices": [
+   "そらん",
+   "さくそう",
+   "そうらん",
+   "そうごう"
+  ],
+  "answer": "そうらん",
+  "level": "ippan"
+ },
+ {
+  "question": "仔細",
+  "choices": [
+   "しっさい",
+   "こひつじ",
+   "たいじ",
+   "しさい"
+  ],
+  "answer": "しさい",
+  "level": "ippan"
+ }
+]

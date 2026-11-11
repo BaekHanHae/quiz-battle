@@ -86,13 +86,13 @@
   },
   "chuu1": {
    "add_sub_min": 2,
-   "add_sub_max": 99,
+   "add_sub_max": 300,
    "mul_a_min": 2,
    "mul_a_max": 12,
    "mul_b_min": 2,
    "mul_b_max": 12,
    "div_result_min": 2,
-   "div_result_max": 12,
+   "div_result_max": 15,
    "divisor_min": 2,
    "divisor_max": 12,
    "fraction_probability": 0.3,
@@ -120,7 +120,14 @@
     "-",
     "*"
    ],
-   "allow_negative": true
+   "allow_negative": true,
+   "mul_alt": {
+    "probability": 0.35,
+    "a_min": 13,
+    "a_max": 30,
+    "b_min": 3,
+    "b_max": 9
+   }
   },
   "ippan": {
    "add_sub_min": 2,
@@ -160,14 +167,14 @@
     "*",
     "/"
    ],
-   "decimal_probability": 0.0,
+   "decimal_probability": 0.15,
    "decimal_hi": 999,
    "decimal_ops": [
     "+",
     "-",
     "*"
    ],
-   "allow_negative": false
+   "allow_negative": true
   }
  }
 }

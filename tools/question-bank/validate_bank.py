@@ -22,6 +22,7 @@ from jm_sources import load_jmdict, load_kanji, max_grade  # noqa: E402
 
 LEVELS = {"shou5", "chuu1", "ippan"}
 LEVEL_GRADE_CAP = {"shou5": 5, "chuu1": 8, "ippan": 99}
+LEVEL_GRADE_MIN = {"shou5": 0, "chuu1": 6, "ippan": 9}
 SUBJECTS = {"ja", "en"}
 FIELDS = ["subject", "level", "question", "choice1", "choice2", "choice3",
           "choice4", "answer", "source", "note"]
@@ -101,9 +102,14 @@ def main():
                 reject(row, "distractor_is_real_reading"); continue
             mg = max_grade(q, grade)
             if mg is None:
-                reject(row, "kanji_grade_unknown"); continue
-            if mg > LEVEL_GRADE_CAP[level]:
-                reject(row, "grade_over_level_cap"); continue
+                # grade 없는 한자(상용 외)를 포함한 단어는 ippan만 허용
+                if level != "ippan":
+                    reject(row, "kanji_grade_unknown"); continue
+            else:
+                if mg > LEVEL_GRADE_CAP[level]:
+                    reject(row, "grade_over_level_cap"); continue
+                if mg < LEVEL_GRADE_MIN[level]:
+                    reject(row, "grade_under_level_min"); continue
 
         valid.append(row)
 

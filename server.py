@@ -365,6 +365,7 @@ class Player:
         self.inventory = []
         self.shield = False
         self.finished = False
+        self.forfeited = False  # 기권 여부 (결과에서 완주자보다 뒤에 정렬)
         self.finish_seq = None
         self.q_start = time.time()
 
@@ -380,6 +381,7 @@ def public_player(p, total):
         "total": total,
         "correct": p.correct,
         "finished": p.finished,
+        "forfeited": p.forfeited,
         "shield": p.shield,
         "connected": p.connected,
     }
@@ -448,10 +450,14 @@ async def finish_game(room):
     if room["state"] != "playing":
         return
     room["state"] = "finished"
+    room["paused"] = False
+    room["pause_started"] = None
     total = CONFIG["questions_per_game"]
+    # 기권한 사람은 점수와 무관하게 완주자보다 뒤에 놓는다
     ordered = sorted(
         room["players"].values(),
-        key=lambda p: (-p.score, p.finish_seq if p.finish_seq is not None else 10 ** 9),
+        key=lambda p: (p.forfeited, -p.score,
+                       p.finish_seq if p.finish_seq is not None else 10 ** 9),
     )
     results = []
     for i, p in enumerate(ordered):
@@ -463,6 +469,7 @@ async def finish_game(room):
             "score": p.score,
             "correct": p.correct,
             "total": total,
+            "forfeited": p.forfeited,
             "winner": i == 0,
         })
     room["results"] = results
@@ -566,6 +573,7 @@ async def ws_endpoint(ws: WebSocket):
                         "type": "game_state",
                         "subject": room["subject"],
                         "level": player.level,
+                        "paused": bool(room.get("paused")),
                         "total": len(player.questions),
                         "questions": sanitize(player.questions),
                         "you": {
@@ -594,7 +602,8 @@ async def ws_endpoint(ws: WebSocket):
                 code = new_room_code()
                 room = {"code": code, "host": token, "players": {token: player},
                         "state": "lobby", "subject": "math", "level": DEFAULT_LEVEL,
-                        "questions": [], "results": None, "finish_counter": 0}
+                        "questions": [], "results": None, "finish_counter": 0,
+                        "paused": False, "pause_started": None}
                 rooms[code] = room
                 await ws.send_json({"type": "room_created", "room_code": code,
                                     "player_id": token, "token": token})
@@ -732,7 +741,7 @@ async def ws_endpoint(ws: WebSocket):
                 await broadcast(room, progress_msg(room))
 
             elif mtype == "answer":
-                if room["state"] != "playing" or player.finished:
+                if room["state"] != "playing" or player.finished or room.get("paused"):
                     continue
                 idx = player.progress
                 if idx >= len(player.questions):
@@ -785,7 +794,7 @@ async def ws_endpoint(ws: WebSocket):
                     await finish_game(room)
 
             elif mtype == "use_item":
-                if room["state"] != "playing" or player.finished:
+                if room["state"] != "playing" or player.finished or room.get("paused"):
                     continue
                 item = msg.get("item")
                 if item not in player.inventory:
@@ -840,6 +849,81 @@ async def ws_endpoint(ws: WebSocket):
                                         "question_index": player.progress})
                     await ws.send_json({"type": "item_used", "item": item,
                                         "target_id": player.token, "blocked": False})
+
+            elif mtype == "pause_game":
+                # 호스트만 전원을 일시정지할 수 있다. 문제 타이머도 함께 멈춘다.
+                if room["host"] != player.token or room["state"] != "playing" \
+                        or room.get("paused"):
+                    continue
+                room["paused"] = True
+                room["pause_started"] = time.time()
+                await broadcast(room, {"type": "paused", "by": player.nickname})
+
+            elif mtype == "resume_game":
+                if room["state"] != "playing" or not room.get("paused"):
+                    continue
+                host_p = room["players"].get(room["host"])
+                if room["host"] != player.token and host_p is not None and host_p.connected:
+                    continue  # 호스트가 접속 중이면 호스트만 재개할 수 있다
+                dur = time.time() - (room["pause_started"] or time.time())
+                room["paused"] = False
+                room["pause_started"] = None
+                for p in room["players"].values():
+                    if not p.finished:
+                        p.q_start += dur  # 멈춰 있던 만큼 타이머를 뒤로 미룬다
+                await broadcast(room, {"type": "resumed"})
+
+            elif mtype == "forfeit":
+                if room["state"] != "playing" or player.finished:
+                    continue
+                player.finished = True
+                player.forfeited = True
+                room["finish_counter"] += 1
+                player.finish_seq = room["finish_counter"]
+                await ws.send_json({"type": "forfeited"})
+                await broadcast(room, progress_msg(room))
+                if maybe_finish(room):
+                    await finish_game(room)
+
+            elif mtype == "end_game":
+                # 호스트가 지금 점수 그대로 게임을 끝낸다
+                if room["host"] != player.token or room["state"] != "playing":
+                    continue
+                await finish_game(room)
+
+            elif mtype == "leave_room":
+                await ws.send_json({"type": "left"})
+                if room["state"] == "playing":
+                    # 진행 중 퇴장은 기권으로 처리해 결과에 남긴다
+                    if not player.finished:
+                        player.finished = True
+                        player.forfeited = True
+                        room["finish_counter"] += 1
+                        player.finish_seq = room["finish_counter"]
+                    player.connected = False
+                    if room["host"] == player.token:
+                        others = [p for p in room["players"].values()
+                                  if p.token != player.token]
+                        if others:
+                            others.sort(key=lambda p: not p.connected)
+                            room["host"] = others[0].token
+                    await broadcast(room, progress_msg(room))
+                    if maybe_finish(room):
+                        await finish_game(room)
+                else:
+                    # 로비/결과에서의 퇴장은 방에서 완전히 나간다
+                    was_host = room["host"] == player.token
+                    room["players"].pop(player.token, None)
+                    if not room["players"]:
+                        rooms.pop(room["code"], None)
+                    elif room["state"] == "lobby":
+                        if was_host:
+                            rest = list(room["players"].values())
+                            rest.sort(key=lambda p: not p.connected)
+                            room["host"] = rest[0].token
+                        await broadcast(room, lobby_msg(room))
+                player = None
+                room = None
 
             elif mtype == "rematch":
                 if room["host"] != player.token:

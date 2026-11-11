@@ -5,8 +5,9 @@
                                [--out out/kokugo_shou5.csv]
 
 생성 규칙 (설계 문서 question-bank-method.md):
-- 후보: JMdict 항목 중 한자 2–4자 표기, pri 태그 보유, 구성 한자 전부
-  KANJIDIC2 grade <= 레벨 상한, 부적합 misc만 있는 항목이 아니고,
+- 후보: JMdict 항목 중 한자 2–4자 표기, pri 태그 보유, 구성 한자의 최대
+  KANJIDIC2 grade가 레벨 구간(shou5 0-5 / chuu1 6-8 / ippan 9-, ippan은
+  grade 없는 한자 포함도 허용)에 들고, 부적합 misc만 있는 항목이 아니고,
   '보통 가나 표기(uk)' 전용이 아닌 단어.
 - 정답: 대표(pri 우선) 항목의 첫 번째 읽기.
 - 오답: (a) 가나 변형 (탁점/촉음/장음/요음 흔들기),
@@ -28,6 +29,10 @@ from jm_sources import (DAKUTEN, is_kanji_char, kanji_chars, load_jmdict,  # noq
                         load_kanji, max_grade, segmentable)
 
 LEVEL_GRADE_CAP = {"shou5": 5, "chuu1": 8, "ippan": 99}
+# 레벨은 상한만이 아니라 구간(band)으로 나눈다. 구간이 겹치면 레벨별 풀이 섞인다.
+# ippan은 grade 9-10(인명용)에 더해, grade가 없는 한자(상용 외)를 포함한 단어도
+# 허용한다 — max_grade가 None을 돌려주는 경우로, validate_bank도 ippan만 예외.
+LEVEL_GRADE_BAND = {"shou5": (0, 5), "chuu1": (6, 8), "ippan": (9, 99)}
 SOURCE_TAG = "jmdict-kanjidic2"
 SEED = 42
 JUKUJIKUN_CAP_RATIO = 0.15
@@ -103,7 +108,7 @@ def main():
     args = ap.parse_args()
 
     rng = random.Random(args.seed)
-    cap = LEVEL_GRADE_CAP[args.level]
+    band_lo, band_hi = LEVEL_GRADE_BAND[args.level]
     out_path = Path(args.out) if args.out else HERE / "out" / f"kokugo_{args.level}.csv"
 
     print("KANJIDIC2 로딩...")
@@ -115,16 +120,24 @@ def main():
 
     # ---- 후보 풀 ----
     pool = []
-    reject_stat = {"not_all_kanji_2_4": 0, "grade_over": 0, "no_pri": 0,
-                   "no_clean": 0, "uk_only": 0, "no_answer": 0}
+    reject_stat = {"not_all_kanji_2_4": 0, "grade_over": 0, "grade_under": 0,
+                   "no_pri": 0, "no_clean": 0, "uk_only": 0, "no_answer": 0}
     for keb, info in jmdict.items():
         chars = kanji_chars(keb)
         if not (2 <= len(keb) <= 4) or len(chars) != len(keb):
             reject_stat["not_all_kanji_2_4"] += 1
             continue
         mg = max_grade(keb, grade)
-        if mg is None or mg > cap:
+        if mg is None:
+            if args.level != "ippan":  # grade 없는 한자 포함 단어는 ippan만
+                reject_stat["grade_over"] += 1
+                continue
+            mg = 99  # 정렬용
+        elif mg > band_hi:
             reject_stat["grade_over"] += 1
+            continue
+        elif mg < band_lo:
+            reject_stat["grade_under"] += 1
             continue
         if not info.has_pri:
             reject_stat["no_pri"] += 1

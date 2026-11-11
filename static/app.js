@@ -292,15 +292,45 @@ function handleMessage(m) {
       inventory = []; armedItem = null;
       $("my-score").textContent = "0点";
       $("my-streak").textContent = "";
+      $("pause-overlay").classList.add("hidden");
+      syncHostControls();
       showScreen("game");
       startBGM();
       runCountdown(() => renderQuestion());
       break;
+    case "paused":
+      $("pause-overlay").classList.remove("hidden");
+      $("btn-resume").classList.toggle("hidden", !isHost);
+      $("pause-wait").classList.toggle("hidden", isHost);
+      stopBGM();
+      toast(`${m.by}が一時停止したよ`, 1500);
+      break;
+    case "resumed":
+      $("pause-overlay").classList.add("hidden");
+      startBGM();
+      toast("再開！", 1000);
+      break;
+    case "forfeited":
+      $("q-text").textContent = "リタイアしました。ほかのプレイヤーの結果を待っているよ…";
+      $("choices").innerHTML = "";
+      toast("リタイアしたよ", 1500);
+      break;
+    case "left":
+      localStorage.removeItem("qb_token");
+      localStorage.removeItem("qb_room");
+      location.reload();
+      break;
     case "game_state": // 재접속 복원
       questions = m.questions; totalQ = m.total;
       myProgress = m.you.progress; inventory = m.you.inventory || [];
+      syncHostControls();
       showScreen("game");
       renderInventory(); renderQuestion(true);
+      if (m.paused) {
+        $("pause-overlay").classList.remove("hidden");
+        $("btn-resume").classList.toggle("hidden", !isHost);
+        $("pause-wait").classList.toggle("hidden", isHost);
+      }
       break;
     case "progress":
       playersCache = m.players;
@@ -330,6 +360,7 @@ function handleMessage(m) {
       break;
     case "game_over": {
       stopBGM();
+      $("pause-overlay").classList.add("hidden");
       renderResults(m.results);
       showScreen("result");
       const mine = m.results.find(r => r.id === myId);
@@ -467,7 +498,7 @@ function renderPlayersBar(players) {
     row.innerHTML = `${avatarHTML(p.character)}<span class="pname">${escapeHtml(p.nickname)}</span>` +
       `<span class="track"><span class="fill" style="width:${pct}%"></span></span>` +
       (p.shield ? `<span class="shield-tag">シールド</span>` : "") +
-      (p.finished ? `<span class="fin-tag">ゴール</span>` : "") +
+      (p.forfeited ? `<span class="fin-tag">リタイア</span>` : p.finished ? `<span class="fin-tag">ゴール</span>` : "") +
       `<span class="pscore">${p.score}</span>`;
     row.onclick = () => {
       if (armedItem && p.id !== myId && !p.finished) {
@@ -628,6 +659,7 @@ function renderResults(results) {
     if (r.winner) li.className = "winner";
     li.style.animationDelay = `${i * 0.18}s`;
     li.innerHTML = `${avatarHTML(r.character)}<span>${r.winner ? "🏆 " : ""}${r.rank}位 ${escapeHtml(r.nickname)}</span>` +
+      (r.forfeited ? `<span class="fin-tag">リタイア</span>` : "") +
       `<span>正解 ${r.correct}/${r.total}</span><span class="r-score">${r.score}点</span>`;
     ol.appendChild(li);
   });
@@ -635,6 +667,32 @@ function renderResults(results) {
   $("rematch-wait").classList.toggle("hidden", isHost);
 }
 $("btn-rematch").addEventListener("click", () => send({ type: "rematch" }));
+
+// ------------------------------------------------------------ 게임 중 조작 버튼
+function syncHostControls() {
+  $("btn-pause").classList.toggle("hidden", !isHost);
+  $("btn-end").classList.toggle("hidden", !isHost);
+}
+// 아이들이 실수로 누르는 걸 막는 2단계 확인: 한 번 누르면 「本当に？」로 바뀐다
+function armConfirm(btn, action) {
+  const label = btn.dataset.label || (btn.dataset.label = btn.textContent);
+  if (btn.dataset.armed) {
+    btn.dataset.armed = "";
+    btn.textContent = label;
+    action();
+  } else {
+    btn.dataset.armed = "1";
+    btn.textContent = "本当に？";
+    setTimeout(() => { btn.dataset.armed = ""; btn.textContent = label; }, 2600);
+  }
+}
+$("btn-pause").addEventListener("click", () => send({ type: "pause_game" }));
+$("btn-resume").addEventListener("click", () => send({ type: "resume_game" }));
+$("btn-end").addEventListener("click", e => armConfirm(e.currentTarget, () => send({ type: "end_game" })));
+$("btn-forfeit").addEventListener("click", e => armConfirm(e.currentTarget, () => send({ type: "forfeit" })));
+$("btn-leave-game").addEventListener("click", e => armConfirm(e.currentTarget, () => send({ type: "leave_room" })));
+$("btn-leave-lobby").addEventListener("click", e => armConfirm(e.currentTarget, () => send({ type: "leave_room" })));
+$("btn-leave-result").addEventListener("click", () => send({ type: "leave_room" }));
 
 async function showRanking() {
   try {
