@@ -287,6 +287,9 @@ def gen_math_questions(level, n):
 def load_bank_questions(subject, level, n):
     path = BASE / "data" / f"questions_{subject}.json"
     items = json.loads(path.read_text(encoding="utf-8"))
+    # 자동 생성 은행은 push 크기 제한 때문에 파트 파일로 나뉘어 있다 (tools/question-bank 참조)
+    for extra in sorted(path.parent.glob(f"questions_{subject}_gen_*.json")):
+        items.extend(json.loads(extra.read_text(encoding="utf-8")))
     valid = []
     for it in items:
         q_text = it.get("question") or it.get("q")
