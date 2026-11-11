@@ -1,1 +1,173 @@
-{"combo_bonus_max_steps":5,"combo_bonus_step":10,"effects_ms":{"flip":5000,"freeze":3000,"hide":5000,"shake":3000},"item_every_streak":3,"item_pool":["shake","freeze","hide","flip","shake","freeze","hide","flip","shield","hint"],"math":{"add_sub_max":99,"div_result_max":12,"divisor_max":12,"fraction_denominators":[2,3,4,6,8],"fraction_probability":0.25,"mul_a_max":12,"mul_b_max":30},"max_custom_image_bytes":300000,"max_players_per_room":6,"points_correct":100,"port":8000,"questions_per_game":20,"room_code_length":4,"speed_bonus_max":50,"speed_bonus_window_sec":10}
+{
+ "combo_bonus_max_steps": 5,
+ "combo_bonus_step": 10,
+ "effects_ms": {
+  "flip": 5000,
+  "freeze": 3000,
+  "hide": 5000,
+  "shake": 3000
+ },
+ "item_every_streak": 3,
+ "item_pool": [
+  "shake",
+  "freeze",
+  "hide",
+  "flip",
+  "shake",
+  "freeze",
+  "hide",
+  "flip",
+  "shield",
+  "hint"
+ ],
+ "math": {
+  "add_sub_max": 99,
+  "div_result_max": 12,
+  "divisor_max": 12,
+  "fraction_denominators": [
+   2,
+   3,
+   4,
+   6,
+   8
+  ],
+  "fraction_probability": 0.25,
+  "mul_a_max": 12,
+  "mul_b_max": 30
+ },
+ "max_custom_image_bytes": 300000,
+ "max_players_per_room": 6,
+ "points_correct": 100,
+ "port": 8000,
+ "questions_per_game": 20,
+ "room_code_length": 4,
+ "speed_bonus_max": 50,
+ "speed_bonus_window_sec": 10,
+ "default_level": "shou5",
+ "math_by_level": {
+  "shou5": {
+   "add_sub_min": 10,
+   "add_sub_max": 500,
+   "mul_a_min": 2,
+   "mul_a_max": 12,
+   "mul_b_min": 2,
+   "mul_b_max": 30,
+   "mul_alt": {
+    "probability": 0.3,
+    "a_min": 10,
+    "a_max": 99,
+    "b_min": 2,
+    "b_max": 9
+   },
+   "div_result_min": 2,
+   "div_result_max": 12,
+   "divisor_min": 2,
+   "divisor_max": 9,
+   "fraction_probability": 0.25,
+   "fraction_denominators": [
+    2,
+    3,
+    4,
+    6,
+    8
+   ],
+   "fraction_same_denominator_probability": 0.8,
+   "fraction_ops": [
+    "+",
+    "-"
+   ],
+   "decimal_probability": 0.1,
+   "decimal_hi": 99,
+   "decimal_ops": [
+    "+",
+    "-"
+   ],
+   "allow_negative": false
+  },
+  "chuu1": {
+   "add_sub_min": 2,
+   "add_sub_max": 99,
+   "mul_a_min": 2,
+   "mul_a_max": 12,
+   "mul_b_min": 2,
+   "mul_b_max": 12,
+   "div_result_min": 2,
+   "div_result_max": 12,
+   "divisor_min": 2,
+   "divisor_max": 12,
+   "fraction_probability": 0.3,
+   "fraction_denominators": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    12
+   ],
+   "fraction_same_denominator_probability": 0.0,
+   "fraction_ops": [
+    "+",
+    "-",
+    "*",
+    "/"
+   ],
+   "decimal_probability": 0.15,
+   "decimal_hi": 999,
+   "decimal_ops": [
+    "+",
+    "-",
+    "*"
+   ],
+   "allow_negative": true
+  },
+  "ippan": {
+   "add_sub_min": 2,
+   "add_sub_max": 999,
+   "mul_a_min": 2,
+   "mul_a_max": 12,
+   "mul_b_min": 2,
+   "mul_b_max": 30,
+   "mul_alt": {
+    "probability": 0.5,
+    "a_min": 12,
+    "a_max": 25,
+    "b_min": 12,
+    "b_max": 25
+   },
+   "div_result_min": 2,
+   "div_result_max": 25,
+   "divisor_min": 2,
+   "divisor_max": 25,
+   "fraction_probability": 0.25,
+   "fraction_denominators": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12
+   ],
+   "fraction_same_denominator_probability": 0.3,
+   "fraction_ops": [
+    "+",
+    "-",
+    "*",
+    "/"
+   ],
+   "decimal_probability": 0.0,
+   "decimal_hi": 999,
+   "decimal_ops": [
+    "+",
+    "-",
+    "*"
+   ],
+   "allow_negative": false
+  }
+ }
+}

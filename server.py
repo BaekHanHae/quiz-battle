@@ -94,10 +94,35 @@ init_db()
 
 
 # ---------------------------------------------------------------- 문제 생성
+LEVELS = ("shou5", "chuu1", "ippan")
+DEFAULT_LEVEL = CONFIG.get("default_level", "shou5")
+if DEFAULT_LEVEL not in LEVELS:
+    DEFAULT_LEVEL = "shou5"
+
+
 def fmt_frac(fr):
     if fr.denominator == 1:
         return str(fr.numerator)
     return f"{fr.numerator}/{fr.denominator}"
+
+
+def fmt_dec(fr):
+    """소수 표기. 분모가 2/5의 거듭제곱으로 떨어지지 않으면 분수 표기로 폴백."""
+    if fr.denominator == 1:
+        return str(fr.numerator)
+    d, twos, fives = fr.denominator, 0, 0
+    while d % 2 == 0:
+        d //= 2
+        twos += 1
+    while d % 5 == 0:
+        d //= 5
+        fives += 1
+    if d != 1:
+        return fmt_frac(fr)
+    k = max(twos, fives)
+    n = (fr * (10 ** k)).numerator
+    digits = str(abs(n)).rjust(k + 1, "0")
+    return ("-" if n < 0 else "") + digits[:-k] + "." + digits[-k:]
 
 
 def pick_distractors(correct, candidates):
@@ -110,63 +135,145 @@ def pick_distractors(correct, candidates):
     return out
 
 
-def make_question(text, correct, distractors):
-    values = [correct] + distractors
-    choices = [fmt_frac(v) for v in values]
+def fill_distractors(correct, distractors, allow_negative):
+    """후보가 모자라면 오프셋을 키워가며 3개까지 채운다."""
+    extra = 30
+    while len(distractors) < 3:
+        c = correct + extra
+        extra += 7
+        if c != correct and c not in distractors and (allow_negative or c >= 0):
+            distractors.append(c)
+    return distractors
+
+
+def make_question(text, correct, distractors, fmt=fmt_frac):
+    values = [correct] + list(distractors)
+    choices = [fmt(v) for v in values]
     random.shuffle(choices)
     return {"question": text, "choices": choices,
-            "answer": choices.index(fmt_frac(correct))}
+            "answer": choices.index(fmt(correct))}
 
 
 def gen_arith(cfg):
+    allow_neg = cfg.get("allow_negative", False)
     op = random.choice(["+", "-", "*", "/"])
-    if op == "+":
-        a, b = random.randint(2, cfg["add_sub_max"]), random.randint(2, cfg["add_sub_max"])
-        r = a + b
-    elif op == "-":
-        a = random.randint(2, cfg["add_sub_max"])
-        b = random.randint(2, a)
-        r = a - b
+    sym = {"+": "+", "-": "-", "*": "×", "/": "÷"}[op]
+    if op in ("+", "-"):
+        a = random.randint(cfg["add_sub_min"], cfg["add_sub_max"])
+        b = random.randint(cfg["add_sub_min"], cfg["add_sub_max"])
+        if allow_neg:
+            if random.random() < 0.4:
+                a = -a
+            if random.random() < 0.4:
+                b = -b
+        elif op == "-" and b > a:
+            a, b = b, a
+        r = a + b if op == "+" else a - b
     elif op == "*":
-        a, b = random.randint(2, cfg["mul_a_max"]), random.randint(2, cfg["mul_b_max"])
+        alt = cfg.get("mul_alt")
+        if alt and random.random() < alt["probability"]:
+            a = random.randint(alt["a_min"], alt["a_max"])
+            b = random.randint(alt["b_min"], alt["b_max"])
+        else:
+            a = random.randint(cfg["mul_a_min"], cfg["mul_a_max"])
+            b = random.randint(cfg["mul_b_min"], cfg["mul_b_max"])
+        if allow_neg and random.random() < 0.45:
+            if random.random() < 0.5:
+                a = -a
+            else:
+                b = -b
         r = a * b
     else:
-        b = random.randint(2, cfg["divisor_max"])
-        r = random.randint(2, cfg["div_result_max"])
+        b = random.randint(cfg["divisor_min"], cfg["divisor_max"])
+        r = random.randint(cfg["div_result_min"], cfg["div_result_max"])
+        if allow_neg:
+            if random.random() < 0.4:
+                b = -b
+            if random.random() < 0.4:
+                r = -r
         a = b * r
-    sym = {"+": "+", "-": "-", "*": "×", "/": "÷"}[op]
     correct = Fraction(r)
-    offsets = [1, -1, 2, -2, 10, -10, 5, -5, 3, -3, 20, -20]
-    distractors = pick_distractors(correct, [correct + o for o in offsets])
+    offsets = [1, -1, 2, -2, 10, -10, 5, -5, 3, -3, 20, -20, 11, -11, 100, -100]
+    cands = [correct + o for o in offsets]
+    if not allow_neg:
+        cands = [c for c in cands if c >= 0]
+    distractors = fill_distractors(correct, pick_distractors(correct, cands), allow_neg)
     return make_question(f"{a} {sym} {b} = ?", correct, distractors)
 
 
 def gen_fraction(cfg):
     dens = cfg["fraction_denominators"]
-    d1, d2 = random.choice(dens), random.choice(dens)
+    op = random.choice(cfg.get("fraction_ops", ["+", "-"]))
+    same_p = cfg.get("fraction_same_denominator_probability", 0.0)
+    d1 = random.choice(dens)
+    d2 = d1 if random.random() < same_p else random.choice(dens)
     f1 = Fraction(random.randint(1, d1), d1)
     f2 = Fraction(random.randint(1, d2), d2)
-    op = random.choice(["+", "-"])
-    if op == "-" and f2 > f1:
-        f1, f2 = f2, f1
-    correct = f1 + f2 if op == "+" else f1 - f2
+    if op == "+":
+        correct = f1 + f2
+    elif op == "-":
+        if f2 > f1:
+            f1, f2 = f2, f1
+        correct = f1 - f2
+    elif op == "*":
+        correct = f1 * f2
+    else:
+        correct = f1 / f2
+    sym = {"+": "+", "-": "-", "*": "×", "/": "÷"}[op]
     cands = [
         correct + Fraction(1, d1), correct - Fraction(1, d1),
         correct + Fraction(1, d2), correct - Fraction(1, d2),
         Fraction(correct.numerator + 1, correct.denominator),
-        correct + 1, correct + Fraction(1, 2),
+        correct + 1, correct - 1,
+        correct + Fraction(1, 2), correct - Fraction(1, 2),
     ]
-    distractors = pick_distractors(correct, [c for c in cands if c >= 0])
-    return make_question(f"{fmt_frac(f1)} {op} {fmt_frac(f2)} = ?", correct, distractors)
+    distractors = fill_distractors(
+        correct, pick_distractors(correct, [c for c in cands if c >= 0]), False)
+    return make_question(f"{fmt_frac(f1)} {sym} {fmt_frac(f2)} = ?", correct, distractors)
 
 
-def gen_math_questions(n):
-    cfg = CONFIG["math"]
+def gen_decimal(cfg):
+    allow_neg = cfg.get("allow_negative", False)
+    scale = 10
+    op = random.choice(cfg.get("decimal_ops", ["+", "-"]))
+    sym = {"+": "+", "-": "-", "*": "×"}[op]
+    a = Fraction(random.randint(1, cfg.get("decimal_hi", 99)), scale)
+    b = Fraction(random.randint(1, cfg.get("decimal_hi", 99)), scale)
+    if allow_neg and random.random() < 0.35:
+        if random.random() < 0.5:
+            a = -a
+        else:
+            b = -b
+    if op == "-" and not allow_neg and b > a:
+        a, b = b, a
+    if op == "+":
+        correct = a + b
+    elif op == "-":
+        correct = a - b
+    else:
+        correct = a * b
+    step = Fraction(1, scale)
+    cands = [correct + step, correct - step, correct + 2 * step, correct - 2 * step,
+             correct + 1, correct - 1, correct + 10 * step, correct - 10 * step]
+    if not allow_neg:
+        cands = [c for c in cands if c >= 0]
+    distractors = fill_distractors(correct, pick_distractors(correct, cands), allow_neg)
+    return make_question(f"{fmt_dec(a)} {sym} {fmt_dec(b)} = ?", correct,
+                         distractors, fmt=fmt_dec)
+
+
+def gen_math_questions(level, n):
+    cfg = CONFIG["math_by_level"].get(level) or CONFIG["math_by_level"]["ippan"]
+    dec_p = cfg.get("decimal_probability", 0.0)
+    frac_p = cfg.get("fraction_probability", 0.25)
     out, seen = [], set()
     tries = 0
-    while len(out) < n and tries < 2000:
+    while len(out) < n and tries < 6000:
         tries += 1
-        if random.random() < cfg.get("fraction_probability", 0.25):
+        r = random.random()
+        if r < dec_p:
+            q = gen_decimal(cfg)
+        elif r < dec_p + frac_p:
             q = gen_fraction(cfg)
         else:
             q = gen_arith(cfg)
@@ -177,28 +284,39 @@ def gen_math_questions(n):
     return out
 
 
-def load_bank_questions(subject, n):
+def load_bank_questions(subject, level, n):
     path = BASE / "data" / f"questions_{subject}.json"
     items = json.loads(path.read_text(encoding="utf-8"))
     valid = []
     for it in items:
-        choices = list(it["choices"])
-        if len(choices) == 4 and it["a"] in choices:
-            valid.append(it)
-    random.shuffle(valid)
+        q_text = it.get("question") or it.get("q")
+        answer = it.get("answer") or it.get("a")
+        choices = list(it.get("choices") or [])
+        if q_text and len(choices) == 4 and answer in choices:
+            valid.append({"question": q_text, "choices": choices,
+                          "answer_text": answer,
+                          "level": it.get("level", "ippan")})
+    pool = [it for it in valid if it["level"] == level] or valid
+    if len(pool) >= n:
+        picked = random.sample(pool, n)
+    else:
+        # 안전장치: 레벨 문제 수가 부족하면 복원 추출로 채운다
+        picked = list(pool)
+        while len(picked) < n:
+            picked.append(random.choice(pool))
     out = []
-    for it in valid[:n]:
+    for it in picked:
         choices = list(it["choices"])
         random.shuffle(choices)
-        out.append({"question": it["q"], "choices": choices,
-                    "answer": choices.index(it["a"])})
+        out.append({"question": it["question"], "choices": choices,
+                    "answer": choices.index(it["answer_text"])})
     return out
 
 
-def build_questions(subject, n):
+def build_questions(subject, level, n):
     if subject == "math":
-        return gen_math_questions(n)
-    return load_bank_questions(subject, n)
+        return gen_math_questions(level, n)
+    return load_bank_questions(subject, level, n)
 
 
 def sanitize(questions):
@@ -252,7 +370,7 @@ def new_room_code():
 
 def clean_nickname(raw):
     name = (raw or "").strip()[:12]
-    return name or "플레이어"
+    return name or "プレイヤー"
 
 
 def clean_character(raw):
@@ -281,6 +399,8 @@ def lobby_msg(room):
         "room_code": room["code"],
         "host_id": room["host"],
         "state": room["state"],
+        "subject": room["subject"],
+        "level": room["level"],
         "players": [public_player(p, total) for p in room["players"].values()],
     }
 
@@ -391,7 +511,7 @@ async def ws_endpoint(ws: WebSocket):
                         found_room, found_player = r, r["players"][token]
                         break
                 if not found_player:
-                    await fail("세션을 찾을 수 없습니다. 새로 입장해 주세요.")
+                    await fail("セッションが見つかりません。新しく参加してください。")
                     continue
                 room, player = found_room, found_player
                 player.ws = ws
@@ -409,6 +529,7 @@ async def ws_endpoint(ws: WebSocket):
                     await ws.send_json({
                         "type": "game_state",
                         "subject": room["subject"],
+                        "level": room["level"],
                         "total": len(room["questions"]),
                         "questions": sanitize(room["questions"]),
                         "you": {
@@ -427,7 +548,7 @@ async def ws_endpoint(ws: WebSocket):
 
             if mtype == "create_room":
                 if player is not None:
-                    await fail("이미 방에 있습니다.")
+                    await fail("すでにルームにいます。")
                     continue
                 token = secrets.token_hex(8)
                 player = Player(token, clean_nickname(msg.get("nickname")),
@@ -436,8 +557,8 @@ async def ws_endpoint(ws: WebSocket):
                 player.connected = True
                 code = new_room_code()
                 room = {"code": code, "host": token, "players": {token: player},
-                        "state": "lobby", "subject": "math", "questions": [],
-                        "results": None, "finish_counter": 0}
+                        "state": "lobby", "subject": "math", "level": DEFAULT_LEVEL,
+                        "questions": [], "results": None, "finish_counter": 0}
                 rooms[code] = room
                 await ws.send_json({"type": "room_created", "room_code": code,
                                     "player_id": token, "token": token})
@@ -446,18 +567,18 @@ async def ws_endpoint(ws: WebSocket):
 
             if mtype == "join_room":
                 if player is not None:
-                    await fail("이미 방에 있습니다.")
+                    await fail("すでにルームにいます。")
                     continue
                 code = (msg.get("room_code") or "").strip().upper()
                 target = rooms.get(code)
                 if not target:
-                    await fail("방을 찾을 수 없습니다.")
+                    await fail("ルームが見つかりません。")
                     continue
                 if target["state"] != "lobby":
-                    await fail("이미 시작된 방입니다.")
+                    await fail("すでに始まっているルームです。")
                     continue
                 if len(target["players"]) >= CONFIG["max_players_per_room"]:
-                    await fail("방이 가득 찼습니다.")
+                    await fail("ルームが満員です。")
                     continue
                 token = secrets.token_hex(8)
                 player = Player(token, clean_nickname(msg.get("nickname")),
@@ -472,7 +593,7 @@ async def ws_endpoint(ws: WebSocket):
                 continue
 
             if player is None or room is None:
-                await fail("먼저 방을 만들거나 입장하세요.")
+                await fail("先にルームを作るか参加してください。")
                 continue
 
             if mtype == "set_character":
@@ -486,10 +607,10 @@ async def ws_endpoint(ws: WebSocket):
                 try:
                     raw = base64.b64decode(b64 or data)
                 except Exception:
-                    await fail("이미지를 읽을 수 없습니다.")
+                    await fail("画像を読み取れませんでした。")
                     continue
                 if len(raw) > CONFIG["max_custom_image_bytes"]:
-                    await fail("이미지가 너무 큽니다.")
+                    await fail("画像が大きすぎます。")
                     continue
                 ext = "png" if "png" in header else "jpg"
                 fname = f"{player.token}.{ext}"
@@ -501,23 +622,44 @@ async def ws_endpoint(ws: WebSocket):
                 await broadcast(room, lobby_msg(room)
                                 if room["state"] == "lobby" else progress_msg(room))
 
+            elif mtype == "set_subject":
+                if room["host"] != player.token or room["state"] != "lobby":
+                    continue
+                subject = msg.get("subject")
+                if subject in ("math", "en", "ja"):
+                    room["subject"] = subject
+                    await broadcast(room, lobby_msg(room))
+
+            elif mtype == "set_level":
+                if room["host"] != player.token or room["state"] != "lobby":
+                    continue
+                level = msg.get("level")
+                if level in LEVELS:
+                    room["level"] = level
+                    await broadcast(room, lobby_msg(room))
+
             elif mtype == "start_game":
                 if room["host"] != player.token:
-                    await fail("방장만 시작할 수 있습니다.")
+                    await fail("ホストだけがスタートできます。")
                     continue
                 if room["state"] != "lobby":
-                    await fail("이미 진행 중인 게임입니다.")
+                    await fail("すでにゲームが進んでいます。")
                     continue
-                subject = msg.get("subject", "math")
+                subject = msg.get("subject") or room["subject"]
                 if subject not in ("math", "en", "ja"):
-                    await fail("과목이 올바르지 않습니다.")
+                    await fail("科目が正しくありません。")
+                    continue
+                level = msg.get("level") or room["level"]
+                if level not in LEVELS:
+                    await fail("レベルが正しくありません。")
                     continue
                 total = CONFIG["questions_per_game"]
-                questions = build_questions(subject, total)
+                questions = build_questions(subject, level, total)
                 if len(questions) < total:
-                    await fail("문제가 부족합니다.")
+                    await fail("問題が足りません。")
                     continue
                 room["subject"] = subject
+                room["level"] = level
                 room["questions"] = questions
                 room["state"] = "playing"
                 room["results"] = None
@@ -527,6 +669,7 @@ async def ws_endpoint(ws: WebSocket):
                 await broadcast(room, {
                     "type": "game_started",
                     "subject": subject,
+                    "level": level,
                     "total": len(questions),
                     "questions": sanitize(questions),
                 })
@@ -590,15 +733,15 @@ async def ws_endpoint(ws: WebSocket):
                     continue
                 item = msg.get("item")
                 if item not in player.inventory:
-                    await fail("그 아이템이 없습니다.")
+                    await fail("そのアイテムを持っていません。")
                     continue
                 if item in OFFENSIVE_ITEMS:
                     target = room["players"].get(msg.get("target_id") or "")
                     if target is None or target is player:
-                        await fail("공격할 상대를 고르세요.")
+                        await fail("攻撃する相手を選んでください。")
                         continue
                     if target.finished:
-                        await fail("이미 완주한 상대입니다.")
+                        await fail("すでにゴールした相手です。")
                         continue
                     player.inventory.remove(item)
                     if target.shield:
@@ -625,7 +768,7 @@ async def ws_endpoint(ws: WebSocket):
                     await broadcast(room, progress_msg(room))
                 elif item == "shield":
                     if player.shield:
-                        await fail("이미 실드가 켜져 있습니다.")
+                        await fail("すでにシールドが有効です。")
                         continue
                     player.inventory.remove(item)
                     player.shield = True
@@ -643,7 +786,7 @@ async def ws_endpoint(ws: WebSocket):
 
             elif mtype == "rematch":
                 if room["host"] != player.token:
-                    await fail("방장만 다시 시작할 수 있습니다.")
+                    await fail("ホストだけがもう一度始められます。")
                     continue
                 if room["state"] != "finished":
                     continue
