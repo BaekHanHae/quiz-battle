@@ -3,3 +3,4 @@ __pycache__/
 results.sqlite3
 static/characters/
 *.pyc
+tools/question-bank/sources/

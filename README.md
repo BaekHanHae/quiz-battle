@@ -64,6 +64,9 @@ python server.py
 - `level`은 `shou5`(小学5年) / `chuu1`(中学1年) / `ippan`(一般) 중 하나. 게임은 방장이
   고른 레벨의 문제만 출제한다 (레벨 문제가 20개보다 적으면 중복을 허용해 채운다)
 - 산수·수학 문제는 서버가 레벨별 설정(`config.json`의 `math_by_level`)으로 자동 생성한다
+- 국어 문제 일부는 JMdict·KANJIDIC2(EDRDG, CC BY-SA 4.0)에서 자동 생성했다.
+  생성 파이프라인은 `tools/question-bank/`, 출처·라이선스 표기는
+  [tools/question-bank/CREDITS.md](tools/question-bank/CREDITS.md)를 본다.
 
 ## 누적 랭킹
 
