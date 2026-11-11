@@ -63,30 +63,101 @@ let answeredThis = false, pendingChoice = null;
 let frozenUntil = 0;
 let playersCache = [];
 
-// ------------------------------------------------------------ 사운드 (WebAudio)
-let audioCtx = null;
+// ------------------------------------------------------------ 사운드 (WebAudio 합성)
+// 음원 파일 없이 코드로 소리를 만든다. 마스터 게인 하나로 전체 음소거를 건다.
+let audioCtx = null, masterGain = null;
+let soundOn = localStorage.getItem("qb_sound") !== "off";
 function ensureAudio() {
   if (!audioCtx) {
-    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { /* 무시 */ }
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = soundOn ? 1 : 0;
+      masterGain.connect(audioCtx.destination);
+    } catch (e) { /* 무시 */ }
   }
   if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
 }
 document.addEventListener("pointerdown", ensureAudio, { once: false });
-function beep(freq, dur = 0.12, type = "sine", delay = 0) {
-  if (!audioCtx) return;
+function beep(freq, dur = 0.12, type = "sine", delay = 0, vol = 0.15) {
+  if (!audioCtx || !soundOn) return;
   const t0 = audioCtx.currentTime + delay;
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
   osc.type = type; osc.frequency.value = freq;
-  gain.gain.setValueAtTime(0.15, t0);
+  gain.gain.setValueAtTime(vol, t0);
   gain.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
-  osc.connect(gain).connect(audioCtx.destination);
+  osc.connect(gain).connect(masterGain);
   osc.start(t0); osc.stop(t0 + dur + 0.02);
 }
-const sndCorrect = () => { beep(660, 0.1); beep(880, 0.14, "sine", 0.09); };
-const sndWrong = () => beep(170, 0.22, "sawtooth");
+function sweep(from, to, dur = 0.25, type = "sine", delay = 0, vol = 0.15) {
+  if (!audioCtx || !soundOn) return;
+  const t0 = audioCtx.currentTime + delay;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(from, t0);
+  osc.frequency.exponentialRampToValueAtTime(Math.max(to, 1), t0 + dur);
+  gain.gain.setValueAtTime(vol, t0);
+  gain.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+  osc.connect(gain).connect(masterGain);
+  osc.start(t0); osc.stop(t0 + dur + 0.02);
+}
+// 정답: 콤보가 쌓일수록 음정이 반음씩 올라간다
+const sndCorrect = (streak = 1) => {
+  const shift = Math.pow(2, Math.min(streak - 1, 8) / 12);
+  [523, 659, 784].forEach((f, i) => beep(f * shift, 0.11, "sine", i * 0.055));
+};
+const sndWrong = () => { beep(196, 0.16, "sawtooth", 0, 0.1); beep(147, 0.24, "sawtooth", 0.1, 0.1); };
 const sndHit = () => { beep(120, 0.25, "square"); beep(90, 0.3, "square", 0.05); };
-const sndItem = () => beep(1250, 0.1, "triangle");
+const sndItem = () => { [880, 1174, 1568].forEach((f, i) => beep(f, 0.1, "triangle", i * 0.06)); };
+const sndCount = (go) => {
+  if (go) { [523, 659, 784, 1046].forEach(f => beep(f, 0.35, "triangle", 0, 0.14)); }
+  else beep(440, 0.12, "sine", 0, 0.14);
+};
+const sndFanfare = (win) => {
+  if (win) [523, 659, 784, 1046, 784, 1046, 1318].forEach((f, i) => beep(f, 0.22, "triangle", i * 0.13, 0.16));
+  else [392, 523, 659].forEach((f, i) => beep(f, 0.2, "triangle", i * 0.13, 0.12));
+};
+// 아이템 종류별 소리
+const sndUseItem = (item) => {
+  if (item === "shake") { for (let i = 0; i < 4; i++) beep(i % 2 ? 90 : 150, 0.07, "square", i * 0.07, 0.12); }
+  else if (item === "freeze") sweep(1200, 280, 0.35, "sine", 0, 0.14);
+  else if (item === "flip") sweep(300, 920, 0.28, "sine", 0, 0.13);
+  else if (item === "hide") beep(220, 0.18, "sine", 0, 0.1);
+  else if (item === "shield") { beep(392, 0.2, "triangle"); beep(523, 0.25, "triangle", 0.02); }
+  else if (item === "hint") { beep(1318, 0.1, "sine", 0, 0.1); beep(1568, 0.14, "sine", 0.09, 0.1); }
+};
+// ------------------------------------------------------------ BGM (짧은 칩튠 루프)
+const BGM_MELODY = [659, 784, 880, 784, 659, 587, 659, 0, 587, 659, 784, 880, 1046, 880, 784, 659];
+const BGM_BASS = [262, 196, 220, 196];
+let bgmTimer = null, bgmStep = 0, bgmNextTime = 0;
+function bgmNote(freq, t0, dur, type, vol) {
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = type; osc.frequency.value = freq;
+  gain.gain.setValueAtTime(vol, t0);
+  gain.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+  osc.connect(gain).connect(masterGain);
+  osc.start(t0); osc.stop(t0 + dur + 0.02);
+}
+function startBGM() {
+  ensureAudio();
+  if (!audioCtx || bgmTimer) return;
+  bgmStep = 0; bgmNextTime = audioCtx.currentTime + 0.06;
+  bgmTimer = setInterval(() => {
+    if (!soundOn) return;
+    while (bgmNextTime < audioCtx.currentTime + 0.3) {
+      const stepDur = 0.21;
+      const f = BGM_MELODY[bgmStep % BGM_MELODY.length];
+      if (f) bgmNote(f, bgmNextTime, stepDur * 0.95, "triangle", 0.035);
+      if (bgmStep % 4 === 0) bgmNote(BGM_BASS[(bgmStep / 4) % BGM_BASS.length], bgmNextTime, stepDur * 3.4, "sine", 0.05);
+      bgmNextTime += stepDur;
+      bgmStep++;
+    }
+  }, 120);
+}
+function stopBGM() { if (bgmTimer) { clearInterval(bgmTimer); bgmTimer = null; } }
 
 // ------------------------------------------------------------ 유틸
 const $ = id => document.getElementById(id);
@@ -103,11 +174,74 @@ function toast(text, ms = 2200) {
   toastTimer = setTimeout(() => el.classList.add("hidden"), ms);
 }
 function avatarHTML(character) {
-  if (character && character.kind === "custom" && character.src) {
+  if (character && (character.kind === "custom" || character.kind === "local") && character.src) {
     return `<img src="${character.src}" alt="キャラ">`;
   }
   const id = character && character.id ? character.id : "cat";
   return (PRESET_MAP[id] || PRESET_MAP.cat).svg;
+}
+
+// ------------------------------------------------------------ 종이꽃가루 (캔버스)
+const confetti = { parts: [], raf: null };
+function confettiCanvas() { return $("confetti"); }
+function confettiResize() {
+  const c = confettiCanvas();
+  c.width = innerWidth; c.height = innerHeight;
+}
+addEventListener("resize", confettiResize);
+function confettiSpawn(x, y, n, spread) {
+  const colors = ["#ffd166", "#5b5bd6", "#8be09a", "#f2a7c3", "#58c472", "#f08a24"];
+  for (let i = 0; i < n; i++) {
+    const a = Math.random() * Math.PI * 2, v = (Math.random() * 0.7 + 0.3) * spread;
+    confetti.parts.push({
+      x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - spread * 0.35,
+      w: 5 + Math.random() * 6, h: 3 + Math.random() * 5,
+      rot: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.3,
+      color: colors[(Math.random() * colors.length) | 0], life: 1,
+    });
+  }
+  if (!confetti.raf) confettiTick();
+}
+function confettiTick() {
+  const c = confettiCanvas(), ctx = c.getContext("2d");
+  ctx.clearRect(0, 0, c.width, c.height);
+  confetti.parts = confetti.parts.filter(p => p.life > 0 && p.y < c.height + 30);
+  for (const p of confetti.parts) {
+    p.vy += 0.12; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= 0.006;
+    ctx.save();
+    ctx.globalAlpha = Math.max(p.life, 0);
+    ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+    ctx.restore();
+  }
+  confetti.raf = confetti.parts.length ? requestAnimationFrame(confettiTick) : null;
+  if (!confetti.raf) ctx.clearRect(0, 0, c.width, c.height);
+}
+const confettiBurst = () => confettiSpawn(innerWidth / 2, innerHeight * 0.35, 45, 9);
+const confettiRain = () => {
+  let n = 0;
+  const iv = setInterval(() => {
+    confettiSpawn(Math.random() * innerWidth, -10, 14, 3);
+    if (++n >= 12) clearInterval(iv);
+  }, 160);
+};
+
+// ------------------------------------------------------------ 카운트다운 연출
+function runCountdown(done) {
+  const el = $("countdown");
+  const steps = ["3", "2", "1", "GO!"];
+  let i = 0;
+  el.classList.remove("hidden");
+  const tick = () => {
+    if (i >= steps.length) { el.classList.add("hidden"); done(); return; }
+    el.textContent = steps[i];
+    el.classList.remove("cd-pop"); void el.offsetWidth; el.classList.add("cd-pop");
+    sndCount(i === steps.length - 1);
+    i++;
+    setTimeout(tick, i === steps.length ? 550 : 600);
+  };
+  tick();
 }
 
 // ------------------------------------------------------------ WebSocket
@@ -156,9 +290,11 @@ function handleMessage(m) {
     case "game_started":
       questions = m.questions; totalQ = m.total; myProgress = 0;
       inventory = []; armedItem = null;
+      $("my-score").textContent = "0点";
+      $("my-streak").textContent = "";
       showScreen("game");
-      renderQuestion();
-      toast("ゲームスタート！", 1200);
+      startBGM();
+      runCountdown(() => renderQuestion());
       break;
     case "game_state": // 재접속 복원
       questions = m.questions; totalQ = m.total;
@@ -189,12 +325,19 @@ function handleMessage(m) {
       break;
     case "item_used":
       removeFromInventory(m.item);
+      sndUseItem(m.item);
       if (m.blocked) toast("相手のシールドに防がれた");
       break;
-    case "game_over":
+    case "game_over": {
+      stopBGM();
       renderResults(m.results);
       showScreen("result");
+      const mine = m.results.find(r => r.id === myId);
+      const iWon = !!(mine && mine.winner);
+      sndFanfare(iWon);
+      if (iWon) confettiRain();
       break;
+    }
   }
 }
 
@@ -211,6 +354,7 @@ function renderCharGrid() {
       pendingCustomImage = null;
       $("custom-status").textContent = "";
       renderCharGrid();
+      renderLocalGrid();
     };
     grid.appendChild(cell);
   });
@@ -346,6 +490,8 @@ function renderQuestion(restored = false) {
   const q = questions[myProgress];
   $("my-progress").textContent = `${myProgress + 1} / ${totalQ} 問題`;
   $("q-text").textContent = q.question;
+  const card = $("question-card");
+  card.classList.remove("q-pop"); void card.offsetWidth; card.classList.add("q-pop");
   const box = $("choices");
   box.innerHTML = "";
   q.choices.forEach((c, i) => {
@@ -363,19 +509,46 @@ function renderQuestion(restored = false) {
   if (!restored) renderInventory();
 }
 
+function floatScore(text) {
+  const card = $("question-card");
+  const el = document.createElement("span");
+  el.className = "float-score";
+  el.textContent = text;
+  card.appendChild(el);
+  setTimeout(() => el.remove(), 950);
+}
+
 function onAnswerResult(m) {
   const btns = document.querySelectorAll(".choice");
   if (pendingChoice !== null && btns[pendingChoice]) {
     btns[pendingChoice].classList.add(m.correct ? "correct" : "wrong");
   }
   if (!m.correct && btns[m.correct_index]) btns[m.correct_index].classList.add("correct");
-  if (m.correct) { sndCorrect(); document.body.classList.add("flash-correct"); setTimeout(() => document.body.classList.remove("flash-correct"), 420); }
-  else sndWrong();
+  if (m.correct) {
+    sndCorrect(m.streak);
+    document.body.classList.add("flash-correct");
+    setTimeout(() => document.body.classList.remove("flash-correct"), 420);
+    floatScore(`+${m.gained}`);
+  } else sndWrong();
   $("my-score").textContent = `${m.score}点`;
-  $("my-streak").textContent = m.streak >= 2 ? `${m.streak}連続正解` : "";
+  const streakEl = $("my-streak");
+  if (m.streak >= 2) {
+    streakEl.textContent = `🔥${m.streak}連続正解`;
+    streakEl.classList.remove("combo-pop"); void streakEl.offsetWidth; streakEl.classList.add("combo-pop");
+    streakEl.classList.toggle("combo-hot", m.streak >= 5);
+  } else {
+    streakEl.textContent = "";
+    streakEl.classList.remove("combo-hot");
+  }
   inventory = m.inventory || inventory;
-  if (m.item_gained) { sndItem(); toast(`アイテムゲット：${ITEM_NAMES[m.item_gained]}`); }
+  if (m.item_gained) {
+    sndItem();
+    toast(`アイテムゲット：${ITEM_NAMES[m.item_gained]}`);
+    confettiBurst();
+  }
   renderInventory();
+  if (m.item_gained) $("inventory").classList.add("inv-pulse");
+  setTimeout(() => $("inventory").classList.remove("inv-pulse"), 650);
   setTimeout(() => {
     myProgress = m.progress;
     if (m.finished) {
@@ -450,10 +623,11 @@ function applyEffect(m) {
 function renderResults(results) {
   const ol = $("result-list");
   ol.innerHTML = "";
-  results.forEach(r => {
+  results.forEach((r, i) => {
     const li = document.createElement("li");
     if (r.winner) li.className = "winner";
-    li.innerHTML = `${avatarHTML(r.character)}<span>${r.rank}位 ${escapeHtml(r.nickname)}</span>` +
+    li.style.animationDelay = `${i * 0.18}s`;
+    li.innerHTML = `${avatarHTML(r.character)}<span>${r.winner ? "🏆 " : ""}${r.rank}位 ${escapeHtml(r.nickname)}</span>` +
       `<span>正解 ${r.correct}/${r.total}</span><span class="r-score">${r.score}点</span>`;
     ol.appendChild(li);
   });
@@ -479,6 +653,35 @@ $("btn-ranking").addEventListener("click", showRanking);
 $("btn-result-ranking").addEventListener("click", showRanking);
 $("btn-ranking-close").addEventListener("click", () => $("ranking-modal").classList.add("hidden"));
 
+// ------------------------------------------------------------ 로컬 캐릭터 (PC 폴더)
+let localChars = [];
+function renderLocalGrid() {
+  const grid = $("local-grid");
+  grid.innerHTML = "";
+  localChars.forEach(c => {
+    const cell = document.createElement("div");
+    cell.className = "char-cell" + (myCharacter.kind === "local" && myCharacter.src === c.src ? " selected" : "");
+    cell.innerHTML = `<img src="${c.src}" alt="キャラ"><span class="char-name">${escapeHtml(c.name)}</span>`;
+    cell.onclick = () => {
+      myCharacter = { kind: "local", src: c.src };
+      pendingCustomImage = null;
+      $("custom-status").textContent = "";
+      renderCharGrid();
+      renderLocalGrid();
+    };
+    grid.appendChild(cell);
+  });
+  $("local-label").classList.toggle("hidden", !localChars.length);
+}
+async function loadLocalCharacters() {
+  try {
+    const res = await fetch("/api/local_characters");
+    const data = await res.json();
+    localChars = data.characters || [];
+    renderLocalGrid();
+  } catch (e) { /* 폴더가 비었거나 서버 오류면 조용히 넘어간다 */ }
+}
+
 // ------------------------------------------------------------ 초기화
 $("join-url").textContent = location.origin + "/";
 if (myToken) {
@@ -486,3 +689,17 @@ if (myToken) {
   connect(); // 저장된 세션으로 재접속 시도
 }
 renderCharGrid();
+loadLocalCharacters();
+confettiResize();
+
+// 사운드 ON/OFF 토글
+function syncSoundBtn() { $("btn-sound").textContent = soundOn ? "🔊" : "🔇"; }
+$("btn-sound").addEventListener("click", () => {
+  soundOn = !soundOn;
+  localStorage.setItem("qb_sound", soundOn ? "on" : "off");
+  ensureAudio();
+  if (masterGain) masterGain.gain.value = soundOn ? 1 : 0;
+  if (!soundOn) stopBGM();
+  syncSoundBtn();
+});
+syncSoundBtn();

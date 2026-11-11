@@ -4,3 +4,4 @@ results.sqlite3
 static/characters/
 *.pyc
 tools/question-bank/sources/
+local_characters/

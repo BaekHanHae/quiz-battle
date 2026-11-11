@@ -20,6 +20,8 @@
 
     <div class="field-label">キャラを選ぶ</div>
     <div id="char-grid"></div>
+    <div class="field-label hidden" id="local-label">このPCのキャラ（フォルダの画像）</div>
+    <div id="local-grid"></div>
     <div class="custom-row">
       <label class="file-btn">写真でキャラを作る
         <input type="file" id="photo-input" accept="image/*" hidden>
@@ -82,7 +84,7 @@
       <div id="question-card">
         <div id="q-text">問題</div>
         <div id="choices"></div>
-        <div id="freeze-overlay" class="hidden"><span>フリーズ！</span></div>
+        <div id="freeze-overlay" class="hidden"><span>❄ フリーズ！ ❄</span></div>
       </div>
       <div class="inv-title">アイテム（攻撃アイテムは押してから相手をタップ）</div>
       <div id="inventory"></div>
@@ -108,6 +110,9 @@
 
   <div id="toast" class="hidden"></div>
 </div>
+<button id="btn-sound" title="サウンドON/OFF">🔊</button>
+<div id="countdown" class="hidden"></div>
+<canvas id="confetti"></canvas>
 <script src="/static/app.js"></script>
 </body>
 </html>

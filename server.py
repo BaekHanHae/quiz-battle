@@ -28,7 +28,14 @@ BASE = Path(__file__).parent
 CONFIG = json.loads((BASE / "config.json").read_text(encoding="utf-8"))
 CHAR_DIR = BASE / "static" / "characters"
 CHAR_DIR.mkdir(parents=True, exist_ok=True)
+# 로컬 전용 캐릭터 폴더: 호스트 PC에만 존재하고 .gitignore로 GitHub에 올라가지 않는다.
+# 유명 캐릭터 이미지 등을 집 안에서만 쓰고 싶을 때 이 폴더에 넣으면 입장 화면에 뜬다.
+LOCAL_CHAR_DIR = BASE / "local_characters"
+LOCAL_CHAR_DIR.mkdir(parents=True, exist_ok=True)
+LOCAL_CHAR_EXTS = {".png", ".jpg", ".jpeg", ".gif", ".webp"}
 DB_PATH = BASE / "results.sqlite3"
+# 클라이언트 카운트다운(3·2·1·GO) 동안 첫 문제 속도 보너스가 깎이지 않게 하는 유예(초)
+COUNTDOWN_SEC = 2.4
 
 PRESET_IDS = ["cat", "dog", "rabbit", "bear", "fox", "panda", "frog", "owl"]
 OFFENSIVE_ITEMS = {"shake", "freeze", "hide", "flip"}
@@ -36,6 +43,16 @@ CODE_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"
 
 app = FastAPI(title="quiz-battle")
 app.mount("/static", StaticFiles(directory=str(BASE / "static")), name="static")
+app.mount("/local-characters", StaticFiles(directory=str(LOCAL_CHAR_DIR)),
+          name="local-characters")
+
+
+def list_local_characters():
+    out = []
+    for f in sorted(LOCAL_CHAR_DIR.iterdir()):
+        if f.is_file() and f.suffix.lower() in LOCAL_CHAR_EXTS:
+            out.append({"name": f.stem, "src": f"/local-characters/{f.name}"})
+    return out
 
 rooms = {}  # code -> room dict
 
@@ -384,6 +401,12 @@ def clean_nickname(raw):
 def clean_character(raw):
     if isinstance(raw, dict) and raw.get("kind") == "preset" and raw.get("id") in PRESET_IDS:
         return {"kind": "preset", "id": raw["id"]}
+    if isinstance(raw, dict) and raw.get("kind") == "local":
+        # 파일명만 뽑아 실제 폴더에 있는 이미지인지 확인한다 (경로 조작 방지)
+        name = Path(str(raw.get("src", ""))).name
+        if name and (LOCAL_CHAR_DIR / name).is_file() \
+                and Path(name).suffix.lower() in LOCAL_CHAR_EXTS:
+            return {"kind": "local", "src": f"/local-characters/{name}"}
     return {"kind": "preset", "id": "cat"}
 
 
@@ -468,6 +491,11 @@ async def index():
 @app.get("/api/ranking")
 async def api_ranking():
     return JSONResponse({"ranking": load_ranking()})
+
+
+@app.get("/api/local_characters")
+async def api_local_characters():
+    return JSONResponse({"characters": list_local_characters()})
 
 
 def lan_ip():
@@ -691,6 +719,8 @@ async def ws_endpoint(ws: WebSocket):
                 for p in room["players"].values():
                     p.reset()
                     p.questions = per_player[p.token]
+                    # 카운트다운 연출 시간만큼 첫 문제 타이머 시작을 미룬다
+                    p.q_start = time.time() + COUNTDOWN_SEC
                 for p in room["players"].values():
                     await send(p, {
                         "type": "game_started",
@@ -720,7 +750,7 @@ async def ws_endpoint(ws: WebSocket):
                 if is_correct:
                     player.streak += 1
                     player.correct += 1
-                    frac = max(0.0, 1.0 - elapsed / CONFIG["speed_bonus_window_sec"])
+                    frac = min(1.0, max(0.0, 1.0 - elapsed / CONFIG["speed_bonus_window_sec"]))
                     speed_bonus = int(CONFIG["speed_bonus_max"] * frac)
                     combo = min(player.streak - 1,
                                 CONFIG["combo_bonus_max_steps"]) * CONFIG["combo_bonus_step"]
@@ -851,6 +881,9 @@ if __name__ == "__main__":
     print(f" 호스트 화면/접속 주소: {url}")
     print(f" 이 컴퓨터에서: http://127.0.0.1:{port}/")
     print(" 폰 카메라로 아래 QR을 스캔해 접속하세요")
+    print(f" 로컬 캐릭터 폴더: {LOCAL_CHAR_DIR}")
+    print("  (여기에 이미지를 넣으면 입장 화면에서 캐릭터로 고를 수 있습니다.")
+    print("   이 폴더는 GitHub에 올라가지 않습니다)")
     print("=" * 46)
     qr = qrcode.QRCode(border=1)
     qr.add_data(url)

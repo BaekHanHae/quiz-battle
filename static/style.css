@@ -159,3 +159,75 @@ body.hit-flash #app { animation: hit-anim 0.45s; }
   font-size: 15px; z-index: 20; box-shadow: 0 4px 18px rgba(0,0,0,0.45);
   max-width: 88vw; text-align: center;
 }
+
+/* ------------------------------------------------ 게임 연출 (2026-11-11 추가) */
+#local-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+
+#btn-sound {
+  position: fixed; top: 10px; right: 10px; z-index: 40;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: #2c3050; border: 2px solid #4a4f6e; font-size: 20px; cursor: pointer;
+}
+
+#countdown {
+  position: fixed; inset: 0; z-index: 50; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 110px; font-weight: 900; color: #ffd166;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.55); pointer-events: none;
+}
+#countdown.cd-pop { animation: cd-pop-anim 0.55s ease-out; }
+@keyframes cd-pop-anim {
+  0% { transform: scale(2.1); opacity: 0; }
+  35% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.94); opacity: 1; }
+}
+
+#confetti { position: fixed; inset: 0; z-index: 45; pointer-events: none; }
+
+#question-card { position: relative; }
+#question-card.q-pop { animation: q-pop-anim 0.28s ease-out; }
+@keyframes q-pop-anim {
+  0% { transform: scale(0.92); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.float-score {
+  position: absolute; top: 8px; right: 16px; z-index: 5;
+  font-size: 26px; font-weight: 900; color: #8be09a;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5); pointer-events: none;
+  animation: float-up 0.95s ease-out forwards;
+}
+@keyframes float-up {
+  0% { transform: translateY(6px); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-34px); opacity: 0; }
+}
+
+#my-streak.combo-pop { display: inline-block; animation: combo-pop-anim 0.3s ease-out; }
+#my-streak.combo-hot { color: #ff7847; font-weight: 800; }
+@keyframes combo-pop-anim {
+  0% { transform: scale(1.45); }
+  100% { transform: scale(1); }
+}
+
+#inventory.inv-pulse .item-chip { animation: inv-pulse-anim 0.6s ease-out; }
+@keyframes inv-pulse-anim {
+  0% { transform: scale(1.25); box-shadow: 0 0 18px #ffd166; }
+  100% { transform: scale(1); box-shadow: none; }
+}
+
+#freeze-overlay {
+  background: radial-gradient(circle at 50% 40%, rgba(190, 230, 255, 0.5), rgba(70, 140, 230, 0.45));
+  backdrop-filter: blur(2px);
+  animation: frost-pulse 0.9s ease-in-out infinite alternate;
+}
+@keyframes frost-pulse {
+  from { box-shadow: inset 0 0 24px rgba(220, 245, 255, 0.5); }
+  to { box-shadow: inset 0 0 54px rgba(220, 245, 255, 0.9); }
+}
+
+#result-list li { animation: result-in 0.45s ease-out both; }
+@keyframes result-in {
+  from { transform: translateY(14px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
